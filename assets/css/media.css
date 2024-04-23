@@ -1,0 +1,161 @@
+@media (max-width:1450px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    /* Слайдер */
+
+    .slider-buttons {
+        top: -100px;
+        right: 0;
+        width: auto;
+        gap: 30px;
+    }
+
+    .instructors-slider-btn{
+        position: static;
+    }
+}
+
+@media (max-width:1080px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    /* Слайдер */
+
+    .slider-buttons {
+        top: -100px;
+        width: 100%;
+    }
+
+}
+
+@media (max-width:830px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    /* Навигация */
+
+    .header__list {
+        display: none;
+    }
+    .nav-btn {
+        display: block;
+    }
+    .header__nav.open .header__list{
+        position:absolute;
+        top: 80px;
+        right: 0;
+        background-color:rgba(26,26,26,0.85);
+        z-index: 1;
+        width: 40%;
+        padding: 40px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav__link{
+        display: block;
+        padding: 10px 40px;
+    }
+    .nav__link::after {
+        display: none;
+    }
+    .nav__link.active {
+        color: var(--primary-blue);
+        font-weight: 600;
+    }
+
+}
+
+@media (max-width:610px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .welcome__text.element-animation {
+        padding: 30px;
+    }
+
+    .welcome__title {
+        font-size: 35px;
+    }
+    .header__nav.open .header__list{
+        width: 50%;
+        height: 100vh;
+    }
+}
+
+@media (max-width:500px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .welcome__text.element-animation {
+        padding: 20px;
+    }
+
+    .welcome__title {
+        font-size: 30px;
+    }
+    .welcome__desc {
+        font-size: 16px;
+    }
+    .services__title {
+        font-size: 25px;
+    }
+    .windy__title {
+        font-size: 25px;
+    }
+}
+
+
+@media (max-width:450px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .welcome__title {
+        font-size: 25px;
+    }
+
+    .instructors-slider-btn{
+        display: none;
+    }
+
+    .welcome__desc {
+        font-size: 15px;
+    }
+    .header__nav.open .header__list{
+        width: 60%;
+    }
+    .yacht__title {
+        font-size: 30px;
+    }
+    .yacht__text__title {
+        font-size: 25px;
+    }
+    .yacht__text__desc {
+        font-size: 17px;
+    }
+    .windy__title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width:400px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .welcome__title {
+        font-size: 21px;
+    }
+    .logo__img{
+        display: none;
+    }
+}
+
+@media (max-width:392px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .footer__container {
+        justify-content: center;
+    }
+}
+
+@media (max-width:380px) {
+    /* ----------------------  Главная страница  ---------------------- */
+    .welcome__text.element-animation {
+        padding: 15px;
+    }
+    .yacht__title {
+        font-size: 24px;
+    }
+    .yacht__text__title {
+        font-size: 20px;
+    }
+    .yacht__text__desc {
+        font-size: 15px;
+    }
+}

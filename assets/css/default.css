@@ -1,0 +1,57 @@
+/* ------------------------------------    Imports   ------------------------------------*/
+
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* CSS */
+@import url("./media.css");
+
+
+/* ------------------------------------    Root    ------------------------------------*/
+:root {
+    --primary-red: #b44646;
+    --primary-blue: #4e88b8;
+    --light-blue:#a8c7e7;
+    --primary-black:#1a1a1a;
+    --primary-grey: #3a3a3a;
+    --accent-blue: #1b62b3;
+    --bg-white:#fafafa;
+    --primary-border:#ebebeb;
+}
+
+/* ------------------------------------    Reset    ------------------------------------*/
+
+/* Reset and base styles  */
+
+* {
+	margin: 0;
+	padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, ul li {
+	list-style: none;
+}
+
+button {
+    border:none;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* ------------------------------------    Defaults    ------------------------------------*/
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffffff; 
+}
+
+img {
+    max-width: 100%;
+}
+
