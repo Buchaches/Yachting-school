@@ -37,7 +37,11 @@
 <body>
     <div class="booking">
         <div class="header">
-            <a href="<?php echo BASE_URL ?>" class="logo"><strong>Yar</strong>Yachts</a>
+            <a href="<?php echo BASE_URL ?>" class="logo">
+                <strong>Yar</strong>Yachts
+                <img src="./assets/img/icon/yachts.svg" alt="logo">
+            </a>
+
             <div class="header__account">
                 <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:32px;height:32px"></lord-icon>
                 <ul class="header__account__menu" id="dropdownMenu">
