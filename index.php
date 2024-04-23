@@ -132,7 +132,7 @@
                     <h1 class="welcome__title">Яхтинг в Ярославле</h1>
                     <p class="welcome__desc">Команда опытных инструкторов гарантирует вам уникальный взгляд на мир
                         яхтинга, независимо от ваших предпочтений.</p>
-                    <a href="#" class="booking__btn">Забронировать</a>
+                    <a href="<?php echo BASE_URL . 'booking.php'?>" class="booking__btn">Забронировать</a>
                 </div>
             </div>
         </section>
