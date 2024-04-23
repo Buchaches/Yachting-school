@@ -55,3 +55,22 @@ img {
     max-width: 100%;
 }
 
+/* -------------------------------------    Logo    -------------------------------------*/
+.logo {
+    display: flex;
+    font-style: italic;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--light-blue);
+    transition: 0.5s;
+    align-items: baseline;
+}
+
+.logo strong {
+    font-weight: 800; 
+    color: var(--primary-blue); 
+}
+
+.logo:hover {
+    color: var(--primary-blue); 
+}   

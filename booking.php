@@ -2,6 +2,15 @@
     include "path.php"; 
     include "./app/database/db.php"; 
 ?>
+<?php 
+    if(isset($_SESSION['email'])){
+        if($_SESSION["email"] == ""){
+            header('location:' . BASE_URL. 'login.php');
+        }
+    }else{
+        header('location:' . BASE_URL . 'login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +35,40 @@
     
 </head>
 <body>
-    
+    <div class="booking">
+        <div class="header">
+            <a href="<?php echo BASE_URL ?>" class="logo"><strong>Yar</strong>Yachts</a>
+            <div class="header__account">
+                <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:32px;height:32px"></lord-icon>
+                <ul class="header__account__menu" id="dropdownMenu">
+                    <?php if ($_SESSION['role_id'] === '3'): ?>
+                        <li class="header__account__menu-items">
+                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'client/client.php'?>" class="">Личный кабинет</a>
+                        </li>
+                    <?php elseif ($_SESSION['role_id'] === '2'): ?>
+                        <li class="__account__menu-items">
+                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'instructor/instructor.php'?>" class="">Инструкторская</a>
+                        </li>
+                    <?php elseif ($_SESSION['role_id'] === '1'): ?>
+                        <li class="__account__menu-items">
+                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'admin/index.php'?>" class="">Админ панель</a>
+                        </li>
+                    <?php endif; ?>
+                    <li class="header__account__menu-items">
+                        <a class="header__account__menu-item" href="<?php echo BASE_URL . 'logout.php'?>" class="">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form">
+            
+        </div>
+    </div>
+
+<!-- -------------   JS   ------------- -->
+<script src="./assets/js/lordicon.js"></script>
+<script src="./assets/js/booking/booking.js"></script>
+<!-- -----------   END JS   ----------- -->
+
 </body>
 </html>
