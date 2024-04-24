@@ -45,6 +45,48 @@ button {
     background: transparent;
 }
 
+p{
+    margin-bottom: 0 !important;
+}
+
+ul{
+    margin: 0 !important;
+    padding-left: 0 !important;
+}
+
+h1{
+    line-height: normal !important;
+    margin: 0 !important;
+}
+
+.select2-results__option--selected{
+    background-color: var(--primary-border) !important;
+    color: #000 !important;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection{
+    border-color: var(--light-blue) !important;
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25) !important; 
+}
+.select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: var(--light-blue) !important;
+    box-shadow: none !important;
+}
+
+.select2-dropdown {
+    border-color: var(--light-blue) !important;
+}
+
+.select2-search__field:focus{
+    box-shadow: none !important;
+    border-color: var(--light-blue) !important;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25) !important;
+    border-color: var(--light-blue) !important;
+}
+
 /* ------------------------------------    Defaults    ------------------------------------*/
 body {
     font-family: "Montserrat", sans-serif;

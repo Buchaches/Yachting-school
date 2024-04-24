@@ -9,25 +9,11 @@ body{
     background: var(--bg-white);
     line-height: normal;
 }
+
 .dashboard {
     min-height: 100vh;
     max-width: 1920px;
     margin: 0 auto;
-}
-p{
-    margin-bottom: 0 !important;
-}
-ul{
-    margin: 0 !important;
-    padding-left: 0 !important;
-}
-h1{
-    line-height: normal !important;
-    margin: 0 !important;
-}
-.select2-results__option--selected{
-    background-color: var(--primary-border) !important;
-    color: #000 !important;
 }
 
 /* ------------------------------------    Sidebar   ------------------------------------*/
@@ -216,14 +202,10 @@ h1{
     font-weight: 500;
     font-size: 15px;
 }
-.header__searchbar:hover{
-    background-color: rgba(105, 145, 214, .05);
-}
 
 .header__searchbar:focus{
-    border-color: rgba(105, 145, 214, .5);
-    box-shadow: 0 0 0 3px rgba(105, 145, 214, .5);
-    background-color: rgba(105, 145, 214, .05);
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25);
+    border-color: var(--light-blue);
 }
 
 .search__btn {
