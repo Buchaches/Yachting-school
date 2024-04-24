@@ -3,6 +3,8 @@
 /* CSS */
 @import url("./default.css");
 
+/* ------------------------------------    All   ------------------------------------*/
+
 body {
     display: flex;
     flex-direction: column;
@@ -14,12 +16,14 @@ body {
 .header__list,.footer__title {
     margin-bottom: 0;
 }
+
 .register{
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .register__form  {
     max-width: 500px;
     padding: 20px;
@@ -37,20 +41,24 @@ body {
     margin: 0;
     color: var(--primary-grey);
 }
+
 .password{
     position: relative;
 }
+
 .bi-eye-slash{
     position: absolute;
     right: 20px;
     bottom: 9px;
 }
+
 .form__err {
     margin-bottom: 0;
     text-align: center;
     font-weight: 500;
     color: #E32636;
 }
+
 .submit__btn {
     font-weight: 600;
     width: 100%; 
@@ -64,13 +72,14 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     padding-bottom: 24px;
-    
 }
+
 .link__text{
     font-weight: 400;
     max-width: 215px;
     text-align: center;
 }
+
 .link a{
     font-weight: 500;
     color:var(--accent-blue);

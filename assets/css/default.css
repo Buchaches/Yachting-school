@@ -7,8 +7,8 @@
 /* CSS */
 @import url("./media.css");
 
-
 /* ------------------------------------    Root    ------------------------------------*/
+
 :root {
     --primary-red: #b44646;
     --primary-blue: #4e88b8;
@@ -88,6 +88,7 @@ h1{
 }
 
 /* ------------------------------------    Defaults    ------------------------------------*/
+
 body {
     font-family: "Montserrat", sans-serif;
     background-color: #ffffff; 
@@ -106,6 +107,7 @@ img {
 }
 
 /* -------------------------------------    Logo    -------------------------------------*/
+
 .logo {
     display: flex;
     font-style: italic;

@@ -4,6 +4,7 @@
 @import url("./default.css");
 
 /* --------------------------------------    Default   --------------------------------------*/
+
 body{
     min-height: 100vh;
     background-color: #e3eff8;
@@ -12,6 +13,7 @@ body{
 }
 
 /* --------------------------------------    Booking   --------------------------------------*/
+
 .booking{
     background-color: #f9f9f9;
     margin: auto;
@@ -58,6 +60,7 @@ body{
 }
 
 /* ------------------    Form   ------------------*/
+
 .form{
     padding: 20px;
     color: #2a2a2a;
@@ -71,6 +74,7 @@ body{
 }
 
 /* -------    Capacity    -------*/
+
 .capacity{
     margin: 20px 0;
     width: 100%;

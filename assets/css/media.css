@@ -63,10 +63,10 @@
 
 @media (max-width:610px) {
     /* ----------------------  Главная страница  ---------------------- */
+
     .welcome__text.element-animation {
         padding: 30px;
     }
-
     .welcome__title {
         font-size: 35px;
     }
@@ -78,10 +78,10 @@
 
 @media (max-width:500px) {
     /* ----------------------  Главная страница  ---------------------- */
+
     .welcome__text.element-animation {
         padding: 20px;
     }
-
     .welcome__title {
         font-size: 30px;
     }
@@ -99,14 +99,13 @@
 
 @media (max-width:450px) {
     /* ----------------------  Главная страница  ---------------------- */
+
     .welcome__title {
         font-size: 25px;
     }
-
     .instructors-slider-btn{
         display: none;
     }
-
     .welcome__desc {
         font-size: 15px;
     }
@@ -129,6 +128,7 @@
 
 @media (max-width:400px) {
     /* ----------------------  Главная страница  ---------------------- */
+
     .welcome__title {
         font-size: 21px;
     }
@@ -139,6 +139,7 @@
 
 @media (max-width:392px) {
     /* ----------------------  Главная страница  ---------------------- */
+
     .footer__container {
         justify-content: center;
     }
@@ -146,6 +147,7 @@
 
 @media (max-width:380px) {
     /* ----------------------  Главная страница  ---------------------- */
+    
     .welcome__text.element-animation {
         padding: 15px;
     }

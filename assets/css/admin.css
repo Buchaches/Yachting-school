@@ -17,6 +17,7 @@ body{
 }
 
 /* ------------------------------------    Sidebar   ------------------------------------*/
+
 .sidebar {
     width: 360px;
     position: fixed;
@@ -143,6 +144,7 @@ body{
     border-radius: 5px;
     transition: all .3s ease-in-out;
 }
+
 .admin__btn:hover {
     box-shadow: none;
     opacity: .95;
@@ -173,11 +175,13 @@ body{
     border-bottom: 1.5px solid var(--primary-border);
     gap: 20px;
 }
+
 .header__title{
     color: var(--primary-black);
     font-weight: 900;
     font-size: 28px;
 }
+
 .header__search {
     display: flex;
     flex-wrap: nowrap;
@@ -244,11 +248,13 @@ body{
 }
 
 /* ------------------    Main   ------------------*/
+
 .main__container{
     width: calc(100% - 100px);
     margin: auto;
     padding-top: 20px;
 }
+
 /*--------    Statistics    --------*/
 
 .statistics {
@@ -292,11 +298,13 @@ body{
     -ms-transform: translateY(0);
     transform: translateY(0);
 }
+
 .statistics__item.first.element-animation.element-show{
     -webkit-transition-delay: 0.25s;
     -o-transition-delay: 0.25s;
     transition-delay: 0.25s;
 }
+
 .statistics__item.second.element-animation.element-show{
     -webkit-transition-delay: 0.5s;
     -o-transition-delay: 0.5s;
@@ -547,6 +555,7 @@ tr:hover{
     justify-content: center;
     align-items: center;
 }
+
 /* ---------    Controls    ---------*/
 
 .controls__wrapper{
@@ -708,6 +717,7 @@ tr:hover{
 }
 
 /*-----  View  -----*/
+
 .content__title{
     font-weight: 600;
     font-size: 17px;
