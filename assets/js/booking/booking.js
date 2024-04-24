@@ -27,14 +27,28 @@ const step = Number(input.getAttribute("step") || 1);
 var value = Number(input.getAttribute("value") || 0);
 let number = document.querySelector(".number");
 var text = document.querySelector(".text");
+var decreaseButton = document.getElementById("decreaseButton");
+var increaseButton = document.getElementById("increaseButton");
+
 number.innerHTML = value;
 
 function rename() {
   number.innerHTML = value;
-  if(value == 2 || value == 3 || value == 4){
+  if(value == 2 || value == 3 || value == 4 || value == 22 || value == 23 || value == 24){
   text.innerHTML = 'человека';
   }else{
     text.innerHTML = 'человек';
+  }
+}
+
+function activeBtn(){
+  if(value == min){
+    decreaseButton.style.opacity = "0.2"
+  }else if(value == max){
+    increaseButton.style.opacity = "0.2"
+  }else{
+    decreaseButton.style.opacity = "0.9"
+    increaseButton.style.opacity = "0.9"
   }
 }
 
@@ -47,6 +61,7 @@ function increase() {
     value += step;
   }
   rename();
+  activeBtn();
 }
 
 function decrease() {
@@ -58,4 +73,5 @@ function decrease() {
     value -= step;
   }
   rename();
+  activeBtn();
 }

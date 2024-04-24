@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// -------------------   Окрашивание 'Статуса' и 'Аттестации'   -------------------
+// -------------   Окрашивание 'Статуса' и 'Аттестации'   -------------
 document.addEventListener("DOMContentLoaded", function() {
     let statusCells = document.getElementsByClassName("colors");
     

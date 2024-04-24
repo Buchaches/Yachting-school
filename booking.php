@@ -68,18 +68,20 @@
             <div class="form__title no-select">Бронирование</div>
             <div class="capacity">
                 <div class="number-input" min="1" max="24" step="1" value="1">
-                    <lord-icon
+                    <lord-icon 
+                        id="decreaseButton"
                         onclick="decrease()"
                         src="https://cdn.lordicon.com/dykoqszm.json"
                         stroke="bold"
                         colors="primary:#2a2a2a,secondary:#2a2a2a"
-                        style="width:60px;height:60px;cursor:pointer">
+                        style="width:60px;height:60px;cursor:pointer;opacity:0.2;">
                     </lord-icon>
                     <div class="value no-select">
                         <span class="number">1</span>
                         <span class="text">человек</span>
                     </div>
                     <lord-icon
+                        id="increaseButton"
                         onclick="increase()"
                         src="https://cdn.lordicon.com/zrkkrrpl.json"
                         stroke="bold"
