@@ -22,7 +22,7 @@ body{
 /* ------------------    Header   ------------------*/
 .header{
     position: relative;
-    padding: 30px;
+    padding: 25px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,4 +57,59 @@ body{
 .header__account__menu-item:hover {
     background-color: rgba(255,255,255,0.1);
 }
+
 /* ------------------    Form   ------------------*/
+.form{
+    padding: 20px;
+    color: #2a2a2a;
+}
+
+.form__title{
+    padding: 24px 0;
+    text-align: center;
+    font-weight: 900;
+    font-size: 28px;
+}
+
+/* -------    Capacity    -------*/
+.capacity{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number-input{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e3eff8;
+    border-radius: 8px;
+}
+
+.value{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 20px;
+}
+
+.number {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 600;
+}

@@ -30,7 +30,7 @@
             <?php if (isset($_SESSION['user_id'])):?>
                 <div class="header__account">
                     <button class= "header__account__btn">
-                        <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#ffffff" style="width:32px;height:32px"></lord-icon>
+                        <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#ffffff" style="width:32px;height:32px;cursor:pointer"></lord-icon>
                     </button>
                     <ul class="header__account__menu" id="dropdownMenu">
                         <?php if ($_SESSION['role_id'] === '3'): ?>

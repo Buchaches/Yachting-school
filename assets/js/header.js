@@ -1,4 +1,4 @@
-// Hamburger Menu
+// ---------------------------   Hamburger Menu   ---------------------------
 const nav = document.querySelector('#nav');
 const navBtn = document.querySelector('#nav-btn');
 const navBtnImg = document.querySelector('#nav-btn-img');
@@ -11,7 +11,7 @@ navBtn.onclick = () => {
   }
 }
 
-// DropDownMenu
+// ----------------------------   DropDownMenu   ----------------------------
 function toggleMenu() {
   var menu = document.getElementById("dropdownMenu");
   var menuButton = document.getElementById("menuButton");

@@ -37,13 +37,13 @@
 <body>
     <div class="booking">
         <div class="header">
-            <a href="<?php echo BASE_URL ?>" class="logo">
+            <a href="<?php echo BASE_URL ?>" class="logo no-select">
                 <strong>Yar</strong>Yachts
                 <img src="./assets/img/icon/yachts.svg" alt="logo">
             </a>
 
             <div class="header__account">
-                <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:32px;height:32px"></lord-icon>
+                <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:32px;height:32px;cursor:pointer"></lord-icon>
                 <ul class="header__account__menu" id="dropdownMenu">
                     <?php if ($_SESSION['role_id'] === '3'): ?>
                         <li class="header__account__menu-items">
@@ -65,7 +65,32 @@
             </div>
         </div>
         <div class="form">
-            
+            <div class="form__title no-select">Бронирование</div>
+            <div class="capacity">
+                <div class="number-input" min="1" max="24" step="1" value="1">
+                    <lord-icon
+                        onclick="decrease()"
+                        src="https://cdn.lordicon.com/dykoqszm.json"
+                        stroke="bold"
+                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        style="width:60px;height:60px;cursor:pointer">
+                    </lord-icon>
+                    <div class="value no-select">
+                        <span class="number">1</span>
+                        <span class="text">человек</span>
+                    </div>
+                    <lord-icon
+                        onclick="increase()"
+                        src="https://cdn.lordicon.com/zrkkrrpl.json"
+                        stroke="bold"
+                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        style="width:60px;height:60px;cursor:pointer">
+                    </lord-icon>
+                </div>
+            </div>
+            <form action="booking.php">
+
+            </form>
         </div>
     </div>
 

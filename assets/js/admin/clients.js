@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// ---------------------------   Сортировка по Дате   ---------------------------
+// ----------------------   Сортировка по Дате   ----------------------
 document.addEventListener('DOMContentLoaded', function() {
     const table = document.querySelector('table');
     const tbody = table.querySelector('tbody');
