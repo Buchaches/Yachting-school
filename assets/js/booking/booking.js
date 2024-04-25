@@ -30,12 +30,9 @@ var text = document.querySelector(".text");
 var decreaseButton = document.getElementById("decreaseButton");
 var increaseButton = document.getElementById("increaseButton");
 
-number.innerHTML = value;
-
 function rename() {
-  number.innerHTML = value;
   if(value == 2 || value == 3 || value == 4 || value == 22 || value == 23 || value == 24){
-  text.innerHTML = 'человека';
+    text.innerHTML = 'человека';
   }else{
     text.innerHTML = 'человек';
   }
@@ -60,6 +57,8 @@ function increase() {
   } else {
     value += step;
   }
+  number.innerHTML = value;
+
   rename();
   activeBtn();
 }
@@ -72,6 +71,54 @@ function decrease() {
   } else {
     value -= step;
   }
+  number.innerHTML = value;
+
   rename();
   activeBtn();
 }
+
+// -----------------------------   Select   -----------------------------
+$( document ).ready(function() {
+  $( '#exampleSelectDate' ).select2( {
+      theme: "bootstrap-5",
+      width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+      placeholder: $( this ).data( 'placeholder' ),
+      closeOnSelect: false,
+      minimumResultsForSearch : Infinity,
+      "language": {
+        "noResults": function(){
+            return "";
+        }
+      }
+  });    
+});
+
+// ------------------------------   AJAX   ------------------------------
+
+//------------------   People   ------------------
+$(document).ready(function(){
+  var people = $('#number').text();
+  if(people){
+    $.ajax({
+      type:'POST',
+      url:'/app/controllers/bookings',
+      data:'people='+people,
+      success:function(html){
+        $('#exampleSelectDate').html(html);
+      }
+    });
+  }
+  $('.number__btn').click(function(){
+    var people = $('#number').text();
+    if(people){
+      $.ajax({
+        type:'POST',
+        url:'/app/controllers/bookings',
+        data:'people='+people,
+        success:function(html){
+          $('#exampleSelectDate').html(html);
+        }
+      });
+    }
+  });
+});

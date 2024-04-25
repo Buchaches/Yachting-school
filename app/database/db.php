@@ -179,6 +179,14 @@ function formatData($dateString){
     $month = $months[$monthNum];
     return $day . ' ' . $month;
 }
+// Форматирование даты в день недели
+function formatDataWeek($dateString){
+    $days = [
+        'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
+    ];
+    return $days[date("w", strtotime($dateString))];
+}
+
 // Форматирование времени
 function formatTime($timeString){
     $timeObj = DateTime::createFromFormat('H:i:s', $timeString);

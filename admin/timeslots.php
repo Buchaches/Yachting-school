@@ -149,7 +149,7 @@
                                     }
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
-                                    $rowCount =  $query->rowCount();
+                                    $rowCount = $query->rowCount();
                                     if($rowCount > 0){
                                         while ($row =  $query->fetch()) {
                                             $date = formatData($row['date']);

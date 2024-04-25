@@ -19,6 +19,10 @@
     <title>YarYachts - Бронирование</title> 
 
     <!-- -------------   CSS   ------------- -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="../assets/css/booking.css">
     <link rel="stylesheet" href="../assets/css/media.css">
     <!-- -----------   END CSS   ----------- -->
@@ -68,19 +72,21 @@
             <div class="form__title no-select">Бронирование</div>
             <div class="capacity">
                 <div class="number-input" min="1" max="24" step="1" value="1">
-                    <lord-icon 
+                    <lord-icon
+                        class="number__btn"
                         id="decreaseButton"
-                        onclick="decrease()"
+                        onclick="decrease();"
                         src="https://cdn.lordicon.com/dykoqszm.json"
                         stroke="bold"
                         colors="primary:#2a2a2a,secondary:#2a2a2a"
                         style="width:60px;height:60px;cursor:pointer;opacity:0.2;">
                     </lord-icon>
                     <div class="value no-select">
-                        <span class="number">1</span>
+                        <span id="number" class="number">1</span>
                         <span class="text">человек</span>
                     </div>
                     <lord-icon
+                        class="number__btn"
                         id="increaseButton"
                         onclick="increase()"
                         src="https://cdn.lordicon.com/zrkkrrpl.json"
@@ -90,13 +96,20 @@
                     </lord-icon>
                 </div>
             </div>
-            <form action="booking.php">
-
+            <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
+                <div class="mb-3">
+                    <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
+                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
+                        <option value="">Выберите дату</option>
+                    </select>
+                </div>
             </form>
         </div>
     </div>
 
 <!-- -------------   JS   ------------- -->
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/select2.min.js"></script>
 <script src="./assets/js/lordicon.js"></script>
 <script src="./assets/js/booking/booking.js"></script>
 <!-- -----------   END JS   ----------- -->
