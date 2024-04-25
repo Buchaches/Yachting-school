@@ -7,7 +7,7 @@
 
 body{
     min-height: 100vh;
-    background-color: #ccd8e0;
+    background-color: #D8EBFA;
     background-image: url(/assets/img/bg/Ellipse.svg);
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -18,14 +18,16 @@ body{
 /* --------------------------------------    Booking   --------------------------------------*/
 
 .booking{
-    background-color: #fff;
     margin: auto;
     width: 600px;
-    min-height: 600px;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 /* ------------------    Header   ------------------*/
 .header{
+    width: 100%;
     position: relative;
     padding: 25px;
     display: flex;
@@ -60,11 +62,13 @@ body{
 
 .header__account__menu-item:hover {
     background-color: rgba(255,255,255,0.1);
+    color: #fff;
 }
 
 /* ------------------    Form   ------------------*/
 
 .form{
+    background-color: #fff;
     padding: 20px;
 }
 
@@ -73,7 +77,6 @@ body{
     font-weight: 900;
     font-size: 28px;
     color: #2a2a2a;
-    /* padding-bottom: 16px; */
 }
 
 /* -------    Capacity    -------*/
@@ -86,12 +89,9 @@ body{
 }
 
 .number-input{
-    /* padding: 10px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid var(--primary-border); */
-    /* border-radius: .25rem; */
 }
 
 .value{
@@ -112,7 +112,7 @@ body{
     font-size: 30px;
     font-weight: 500;
     line-height: 1;
-    color: var(--accent-blue);
+    color: var(--primary-blue);
 }
 
 .text {

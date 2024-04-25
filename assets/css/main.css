@@ -194,9 +194,9 @@
     font-weight: 600;
     font-size: 20px;
     padding: 20px 40px;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    transition: all .3s linear;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    transition: all 0.4s linear;
     display: block;
     border-radius: 10px;
     text-align: center;
@@ -209,7 +209,7 @@
  .booking__btn:hover {
     background-color: #ffffff;
     color: var(--accent-blue);
-    transform: scale(1.03);
+    transform: scale(1.01);
  }
 
 /* ------------------ Services ------------------*/
