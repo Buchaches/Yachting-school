@@ -78,8 +78,8 @@
                         onclick="decrease();"
                         src="https://cdn.lordicon.com/dykoqszm.json"
                         stroke="bold"
-                        colors="primary:#1b62b3,secondary:#1b62b3"
-                        style="width:60px;height:60px;cursor:pointer;opacity:0.2;">
+                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        style="width:50px;height:50px;cursor:pointer;opacity:0.2;">
                     </lord-icon>
                     <div class="value no-select">
                         <span id="number" class="number">1</span>
@@ -91,12 +91,24 @@
                         onclick="increase()"
                         src="https://cdn.lordicon.com/zrkkrrpl.json"
                         stroke="bold"
-                        colors="primary:#1b62b3,secondary:#1b62b3"
-                        style="width:60px;height:60px;cursor:pointer">
+                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        style="width:50px;height:50px;cursor:pointer">
                     </lord-icon>
                 </div>
             </div>
             <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
+                <div class="mb-3">
+                    <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
+                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
+                        <option value="">Выберите дату</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
+                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
+                        <option value="">Выберите дату</option>
+                    </select>
+                </div>
                 <div class="mb-3">
                     <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
                     <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">

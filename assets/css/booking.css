@@ -8,6 +8,9 @@
 body{
     min-height: 100vh;
     background-color: #ccd8e0;
+    background-image: url(/assets/img/bg/Ellipse.svg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
     display: flex;
     justify-content: center;
 }
@@ -63,13 +66,13 @@ body{
 
 .form{
     padding: 20px;
-    color: #2a2a2a;
 }
 
 .form__title{
     text-align: center;
     font-weight: 900;
     font-size: 28px;
+    color: #2a2a2a;
     /* padding-bottom: 16px; */
 }
 
@@ -117,5 +120,4 @@ body{
     font-weight: 600;
     width: 91px;
     text-align: center;
-    opacity: 0.9;
 }
