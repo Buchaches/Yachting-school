@@ -47,7 +47,7 @@
             </a>
 
             <div class="header__account">
-                <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:32px;height:32px;cursor:pointer"></lord-icon>
+                <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:36px;height:36px;cursor:pointer"></lord-icon>
                 <ul class="header__account__menu" id="dropdownMenu">
                     <?php if ($_SESSION['role_id'] === '3'): ?>
                         <li class="header__account__menu-items">
@@ -78,7 +78,7 @@
                         onclick="decrease();"
                         src="https://cdn.lordicon.com/dykoqszm.json"
                         stroke="bold"
-                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        colors="primary:#1b62b3,secondary:#1b62b3"
                         style="width:60px;height:60px;cursor:pointer;opacity:0.2;">
                     </lord-icon>
                     <div class="value no-select">
@@ -91,7 +91,7 @@
                         onclick="increase()"
                         src="https://cdn.lordicon.com/zrkkrrpl.json"
                         stroke="bold"
-                        colors="primary:#2a2a2a,secondary:#2a2a2a"
+                        colors="primary:#1b62b3,secondary:#1b62b3"
                         style="width:60px;height:60px;cursor:pointer">
                     </lord-icon>
                 </div>

@@ -7,7 +7,7 @@
 
 body{
     min-height: 100vh;
-    background-color: #e3eff8;
+    background-color: #ccd8e0;
     display: flex;
     justify-content: center;
 }
@@ -15,16 +15,16 @@ body{
 /* --------------------------------------    Booking   --------------------------------------*/
 
 .booking{
-    background-color: #f9f9f9;
+    background-color: #fff;
     margin: auto;
-    width: 640px;
-    min-height: 100vh;
+    width: 600px;
+    min-height: 600px;
 }
 
 /* ------------------    Header   ------------------*/
 .header{
     position: relative;
-    padding: 25px 20px;
+    padding: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@ body{
 }
 
 .header__account {
-    height: 32px;
+    height: 36px;
 }
 
 .header__account__menu {
@@ -67,10 +67,10 @@ body{
 }
 
 .form__title{
-    padding: 24px 0;
     text-align: center;
     font-weight: 900;
     font-size: 28px;
+    /* padding-bottom: 16px; */
 }
 
 /* -------    Capacity    -------*/
@@ -83,12 +83,12 @@ body{
 }
 
 .number-input{
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--primary-border);
-    border-radius: 8px;
+    /* border: 1px solid var(--primary-border); */
+    /* border-radius: .25rem; */
 }
 
 .value{
@@ -98,7 +98,7 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    margin: 0 20px;
+    margin: 0 5px;
 }
 
 .number {
@@ -108,11 +108,14 @@ body{
     justify-content: center;
     font-size: 30px;
     font-weight: 500;
+    line-height: 1;
+    color: var(--accent-blue);
 }
 
 .text {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     width: 91px;
     text-align: center;
+    opacity: 0.9;
 }
