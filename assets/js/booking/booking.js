@@ -90,35 +90,84 @@ $( document ).ready(function() {
             return "";
         }
       }
-  });    
+  });
+
+  $( '#exampleSelectTime' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+    closeOnSelect: false,
+    minimumResultsForSearch : Infinity,
+    "language": {
+      "noResults": function(){
+          return "";
+      }
+    }
+  }); 
+
+  $( '#exampleSelectInstructor' ).select2( {
+    theme: "bootstrap-5",
+    width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+    placeholder: $( this ).data( 'placeholder' ),
+    closeOnSelect: false,
+    minimumResultsForSearch : Infinity,
+    "language": {
+      "noResults": function(){
+          return "";
+      }
+    }
+  }); 
 });
 
 // ------------------------------   AJAX   ------------------------------
 
 //------------------   People   ------------------
 $(document).ready(function(){
+  // Количество людей
   var people = $('#number').text();
   if(people){
     $.ajax({
       type:'POST',
-      url:'/app/controllers/bookings',
+      url:'/app/controllers/bookings.php',
       data:'people='+people,
       success:function(html){
         $('#exampleSelectDate').html(html);
+        $('#exampleSelectTime').html('<option value=""></option>');
       }
     });
   }
+
   $('.number__btn').click(function(){
     var people = $('#number').text();
     if(people){
       $.ajax({
         type:'POST',
-        url:'/app/controllers/bookings',
+        url:'/app/controllers/bookings.php',
         data:'people='+people,
         success:function(html){
           $('#exampleSelectDate').html(html);
+          $('#exampleSelectTime').html('<option value=""></option>');
         }
       });
     }
   });
+
+  // Дата
+  $('#exampleSelectDate').on('change', function() {
+    var date = $(this).val();
+    if(date){
+      $.ajax({
+        type:'POST',
+        url:'/app/controllers/bookings.php',
+        data:'date='+date,
+        success:function(html){
+          $('#exampleSelectTime').html(html);
+        }
+      });
+    }
+  });
+
+  //Время
+  
 });
+

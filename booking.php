@@ -100,19 +100,19 @@
                 <div class="mb-3">
                     <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
                     <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
-                        <option value="">Выберите дату</option>
+                        
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
-                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
-                        <option value="">Выберите дату</option>
+                    <label for="exampleSelectTime" class="form-label no-select">Выберите время</label>
+                    <select name="time" id="exampleSelectTime" class="form-select" data-placeholder="Выберите время">
+
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
-                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
-                        <option value="">Выберите дату</option>
+                    <label for="exampleSelectInstructor" class="form-label no-select">Выберите инструктора</label>
+                    <select name="instructor" id="exampleSelectInstructor" class="form-select" data-placeholder="Выберите инструктора">
+
                     </select>
                 </div>
             </form>

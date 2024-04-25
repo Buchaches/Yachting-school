@@ -8,17 +8,31 @@ $today = date('Y-m-d');
 if(!empty($_POST["people"])){
     $stringNumber = $_POST["people"];
     $people = (int)$stringNumber;
-    $sql = "SELECT * FROM timeslots WHERE remaining_capacity >= '$people' AND timeslots.date >= '$today' ORDER BY timeslots.date ASC";
+    $sql = "SELECT DISTINCT timeslots.date FROM timeslots WHERE remaining_capacity >= '$people' AND timeslots.date >= '$today' ORDER BY timeslots.date ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();
     if($rowCount > 0 && $people > 0){
+        echo '<option value=""></option>';
         while($row = $query->fetch()){
             $date = formatData($row['date']);
             $week = formatDataWeek($row['date']);
-            echo '<option value="'.$row['slot_id'].'">'.$date.' | '.$week.'</option>';
+            echo '<option value="'.$row['date'].'">'.$date.' | '.$week.'</option>';
         }
-    }else{
-        echo '<option value="">Укажите количество человек</option>';
+    }
+}
+
+if(!empty($_POST["date"])){
+    $date = $_POST["date"];
+    $sql = "SELECT DISTINCT time_start FROM timeslots WHERE timeslots.date = '$date' ORDER BY time_start ASC"; //Поменять на вывод всего
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $rowCount = $query->rowCount();
+    if($rowCount > 0){
+        echo '<option value=""></option>';
+        while($row = $query->fetch()){
+            $time = formatTime($row['time_start']);
+            echo '<option value="'.$row['time_start'].'">'.$time.'</option>';
+        }
     }
 }
