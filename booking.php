@@ -128,12 +128,12 @@
                     </select>
                     <div class="mt-2 mb-2">Мы стараемся учитывать ваши пожелания, но не всегда можем гарантировать присутствие конкретного инструктора.</div>
                 </div>
-                <div class="pt-4 mb-4 submit" id="submit" style="display:none;">
-                    <div>
+                <div class="pt-2 mb-4 submit">
+                    <div id="totalPrice" style="display:none;">
                         <div class="price-label">ЦЕНА</div>
                         <div class="price" id="price"></div>
                     </div>
-                    <button type="submit" class="booking__btn" name="booking__btn">Забронировать</button>
+                    <button type="submit" class="booking__btn" name="booking__btn" id="bookingBtn" disabled>Забронировать</button>
                 </div>
             </form>
         </div>

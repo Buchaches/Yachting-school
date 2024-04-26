@@ -178,7 +178,8 @@ $(document).ready(function(){
         $('#exampleSelectDate').html(html);
         $('#exampleSelectTime').html('<option value=""></option>');
         $('#exampleSelectInstructor').html('<option value=""></option>');
-        $('#submit').hide();
+        $('#totalPrice').hide();
+        $("#bookingBtn").prop("disabled", true);
       }
     });
     $('#capacity').val(people);
@@ -196,7 +197,8 @@ $(document).ready(function(){
           $('#exampleSelectDate').html(html);
           $('#exampleSelectTime').html('<option value=""></option>');
           $('#exampleSelectInstructor').html('<option value=""></option>');
-          $('#submit').hide();
+          $('#totalPrice').hide();
+          $("#bookingBtn").prop("disabled", true);
         }
       });
       $('#capacity').val(people);
@@ -228,7 +230,8 @@ $(document).ready(function(){
     var number = $('#number').text();
     if(slot !=''){
       $('#instructor').show();
-      $('#submit').show();
+      $('#totalPrice').show();
+      $("#bookingBtn").removeAttr("disabled");
     }
     if(slot,number){
       $.ajax({

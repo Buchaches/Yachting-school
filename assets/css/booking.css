@@ -210,3 +210,8 @@ body{
 .booking__btn:active{
     background-color: #2c5278;
 }
+
+.booking__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; 
+}
