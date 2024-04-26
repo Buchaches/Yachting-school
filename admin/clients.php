@@ -36,15 +36,10 @@
 </head>
 <body>
     <div class="dashboard">
-
         <?php include("../app/include/admin_sidebar.php"); ?>
-
         <div class="body">
-
             <header class="header">
-
                 <h1 class="header__title">Клиенты</h1>
-
                 <form action="" method="post" class="header__search">
                     <input type="search" id="search" name="search" class="header__searchbar" placeholder="Введите имя или email клиента">
                     <?php
@@ -65,7 +60,6 @@
                     ?>
                     <button type="Submit" name="search__btn" value="Search" class="admin__btn search__btn">Поиск</button>
                 </form>
-
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -85,9 +79,7 @@
 
             <main class="main">
                 <div class="main__container">
-
                     <div class="row__counter">Всего клиентов&nbsp;(<?=$totalClients = countRows("clients")?>)</div>
-                    
                     <div class="table__container element-animation">
                         <table class="main__table">
                             <thead>

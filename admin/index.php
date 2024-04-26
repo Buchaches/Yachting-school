@@ -36,14 +36,10 @@
 </head>
 <body>
     <div class="dashboard">
-
         <?php include("../app/include/admin_sidebar.php"); ?>
-
         <div class="body">
             <header class="header">
-
                 <h1 class="header__title">Статистика</h1>
-
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -105,7 +101,6 @@
                         </div>
                     </div>
                     <div class="table__wrapper">
-
                         <div class="table__item element-animation">
                             <div class="table__desc">
                                 <div class="desc__title">

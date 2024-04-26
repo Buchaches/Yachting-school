@@ -122,7 +122,6 @@ function update($table, $name_id, $id, $params){
 }
 
 // Удаление строки в таблице
-
 function deleteOne($table, $name_id, $id){
     global $pdo;
     $sql = "DELETE FROM $table WHERE $name_id = $id";
@@ -132,7 +131,6 @@ function deleteOne($table, $name_id, $id){
 }
 
 // Всего строк в таблице
-
 function countRows($table, $params = []) {
     global $pdo;
     $sql = "SELECT COUNT(*) as total_rows FROM $table";
@@ -179,6 +177,7 @@ function formatData($dateString){
     $month = $months[$monthNum];
     return $day . ' ' . $month;
 }
+
 // Форматирование даты в день недели
 function formatDataWeek($dateString){
     $days = [

@@ -40,14 +40,10 @@
 </head>
 <body>
     <div class="dashboard">
-
         <?php include("../app/include/admin_sidebar.php"); ?>
-
         <div class="body">
-            <header class="header">
-                
+            <header class="header">                
                 <h1 class="header__title">Слоты</h1>
-
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -63,19 +59,15 @@
                         <lord-icon src="https://cdn.lordicon.com/abfverha.json" trigger="hover" colors="primary:#1a1a1a" style="width:40px;height:40px"></lord-icon>
                     </div>
                 </div>
-
             </header>
 
             <main class="main">
                 <div class="main__container">
-
                     <div class="add__new">
                         <div class="add__text">Добавить новый слот</div>
                         <a href="?action=add&id=none&error=0" class="admin__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
                     </div>
-
                     <div class="row__counter">Всего слотов&nbsp;(<?=$totalClients = countRows("instructors")?>)</div>
-
                     <form method="post" class="filter__form" action="">
                         <div class="filter__row">
                             <div class="filter__col">
@@ -97,8 +89,7 @@
                                 <button type="submit" class="admin__btn filter__btn" name="filter__btn"><div><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24 M24,24H0" fill="none"/><path d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"/><path d="M0,0h24v24H0V0z" fill="none"/></g></svg></svg>Filter</div></button>
                             </div>
                         </div>
-                    </form>             
-                    
+                    </form>                                
                     <div class="table__container element-animation">
                         <table class="main__table">
                             <thead>
@@ -367,7 +358,6 @@
                                 </div>';
                             }
                         }else if($action=='edit'){
-
                             $errorGet=$_GET["error"];
                             $errorlist= array(
                                 '1'=>'Не все поля заполнены!',
@@ -469,7 +459,6 @@
                                                                     }
                                                                 }
                                                             }
-
                                                         echo'</tbody>
                                                     </table>
                                                 </div>
@@ -510,7 +499,6 @@
                                     </div>
                                 </div>';
                             }
-
                         }else if($action=='drop'){
                             $date= formatData($_GET["date"]);
                             $time=$_GET["time"];

@@ -40,14 +40,10 @@
 </head>
 <body>
     <div class="dashboard">
-
         <?php include("../app/include/admin_sidebar.php"); ?>
-
         <div class="body">
             <header class="header">
-                
-                <h1 class="header__title">Инструкторы</h1>
-                
+                <h1 class="header__title">Инструкторы</h1>               
                 <form action="" method="post" class="header__search">
                     <input type="search" id="search" name="search" class="header__searchbar" placeholder="Введите имя или email инструктора">
                     <?php
@@ -68,7 +64,6 @@
                     ?>
                     <button type="Submit" name="search__btn" value="Search" class="admin__btn search__btn">Поиск</button>
                 </form>
-
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -84,19 +79,15 @@
                         <lord-icon src="https://cdn.lordicon.com/abfverha.json" trigger="hover" colors="primary:#1a1a1a" style="width:40px;height:40px"></lord-icon>
                     </div>
                 </div>
-
             </header>
 
             <main class="main">
                 <div class="main__container">
-
                     <div class="add__new">
                         <div class="add__text">Добавить инструктора</div>
                         <a href="?action=add&id=none&error=0" class="admin__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
                     </div>
-
                     <div class="row__counter">Всего инструкторов&nbsp;(<?=$totalClients = countRows("instructors")?>)</div>
-
                     <div class="table__container element-animation">
                         <table class="main__table">
                             <thead>
@@ -253,7 +244,6 @@
                                 </div>';
                             }
                         }else if($action== 'edit'){
-
                             $errorGet=$_GET["error"];
                             $errorlist= array(
                                 '1'=>'Не все поля заполнены!',
@@ -262,16 +252,13 @@
                                 '4'=>'',
                                 '0'=>'',
                             );
-
                             $instructors= selectOne('instructors',['instructor_id' => $id]);
                             $name = $instructors['instructor_name'];
                             $surname = $instructors['instructor_surname'];
                             $phone = $instructors['instructor_phone'];
                             $user_id = $instructors['user_id'];
-
                             $users = selectOne('users',['user_id'=> $user_id]);
                             $email = $users['email'];
-                            
                             if($errorGet!= '4'){
                                 echo '
                                 <div id="popup" class="overlay">
@@ -373,7 +360,6 @@
                             </div>';
                         }
                     }?>
-
                 </div>
             </main>            
         </div>

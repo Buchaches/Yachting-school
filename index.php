@@ -222,7 +222,6 @@
                                 </div>
                             </div>
 
-
                             <div class="swiper-slide instructors-slide"
                                 onclick="openPopup('./assets/img/instructors/5.jpg', 'Бабкин Андрей', 'Андрей — воспитанник ярославского парусного клуба. Вместе с Глебом и Максом из прошлых выпусков они с детства покоряют волжский ветер. В парусный спорт он пришел благодаря сарафанному радио и сейчас уверенно передаёт накопленные знания нам. Он рад, что не забросил это дело будучи ребёнком, ведь жизнь яхтсмена наполнена приключениями и знакомствами. Андрей — самый весёлый инструктор в нашей команде, с ним постоянно происходят забавные истории.<br><br>В жизни Андрея есть три больших любви — паруса, гейминг и еда. В свободное время он не прочь зарубиться в видеоигры с Максом, а потом приготовить картофельного пюре по уникальному рецепту (вы даже не представляете, насколько это вкусно!). А ещё Андрей поклонник джаза и делится с нами своими музыкальными находками.<br><br>Его любимая часть в тренировочном процессе — прохождение под мостами между опор. Эти места очень коварны, потому что опоры перекрывают поток ветра. Нужно большое мастерство и опыт, чтобы заложить правильный вираж при подходе к мостам, при этом учитывая ветровые перепады и течение Волги')">
                                 <div class="instructors__thumb">
@@ -245,7 +244,6 @@
 
                         </div>
                     </div>
-
                     <div class="slider-buttons">
                         <div class="instructors-slider-btn swiper-button-prev"></div>
                         <div class="instructors-slider-btn swiper-button-next"></div>
@@ -294,26 +292,24 @@
                         <div class="contact__communication">
                             <h4 class="contact__communication__text">Как с нами связаться:</h4>
                             <ul class="contact__communication__desk">
-                                <li class="contact__communication__item"><img src="./assets/img/icon/contact_icon/phone.png"
-                                        alt="" width="16" height="16"> <a href="tel:+79036917117">+7 (903) 691-71-17</a>
+                                <li class="contact__communication__item">
+                                    <img src="./assets/img/icon/contact_icon/phone.png" alt="" width="16" height="16"> <a href="tel:+79036917117">+7 (903) 691-71-17</a>
                                 </li>
-                                <li class="contact__communication__item"><img src="./assets/img/icon/contact_icon/mail.png"
-                                        alt="" width="16" height="16"> <a
-                                        href="mailto:yaryacht@yandex.ru">yaryacht@yandex.ru</a>
+                                <li class="contact__communication__item">
+                                    <img src="./assets/img/icon/contact_icon/mail.png"alt="" width="16" height="16"> <a href="mailto:yaryacht@yandex.ru">yaryacht@yandex.ru</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <iframe
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor"
-                        width="100%" height="350" frameborder="0"></iframe>
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor"width="100%" height="350" frameborder="0">
+                    </iframe>
                 </div>
             </div>
         </section>
 
     </main>
     <?php include("app/include/footer.php"); ?>
-
 
 <!-- -------------   JS   ------------- -->
 <script src="./assets/js/animation.js"></script>
