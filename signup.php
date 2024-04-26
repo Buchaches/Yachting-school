@@ -31,7 +31,7 @@
 </head>
 
 <body>
-    <?php include("app/include/header.php"); ?>
+    <?php include("./app/include/header.php"); ?>
 
     <div class="register container">
         <form class="register__form row" method="post" action="signup.php">

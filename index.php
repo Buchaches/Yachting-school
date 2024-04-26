@@ -28,6 +28,7 @@
 </head>
 
 <body>
+    <?php include("./app/include/preloader.php"); ?>
 
     <header class="header">
         <div class="header__container">
