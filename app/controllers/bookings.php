@@ -75,3 +75,7 @@ if(!empty($_POST["slotPrice"]) && !empty($_POST["numberPrice"])){
         echo '';
     }
 }
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking__btn'])){
+    tt($_POST);
+}

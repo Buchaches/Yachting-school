@@ -24,7 +24,6 @@ body{
     height: 727px;
     /* height: 100vh; */
     background-color: #fff;
-    overflow-y: auto;
 }
 
 /* ------------------    Header   ------------------*/
@@ -74,6 +73,7 @@ body{
 .form{
     padding: 20px;
     height: calc(727px - 94px);
+    overflow-y: auto;
 }
 
 .form__title{

@@ -79,7 +79,7 @@ function decrease() {
 
 // -----------------------------   Select2   -----------------------------
 
-// --------------   Дата   ---------------
+//-----------------   Date   -----------------
 $( document ).ready(function() {
   $( '#exampleSelectDate' ).select2( {
       theme: "bootstrap-5",
@@ -105,7 +105,7 @@ $( document ).ready(function() {
     return $(newHtml);
   }
 
-// --------------   Время   --------------
+//-----------------   Time   -----------------
   $( '#exampleSelectTime' ).select2( {
     theme: "bootstrap-5",
     width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
@@ -132,7 +132,7 @@ $( document ).ready(function() {
     return $(newHtml);
   }
 
-// -----------   Инструкторы   -----------
+//--------------   Instructor   --------------
   $( '#exampleSelectInstructor' ).select2( {
     theme: "bootstrap-5",
     width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
@@ -164,9 +164,9 @@ function formatStateInstructor(state) {
 
 // ------------------------------   AJAX   ------------------------------
 
-//------------------   People   ------------------
 $(document).ready(function(){
-  // Количество людей
+
+//----------------   People   ----------------
   var people = $('#number').text();
   if(people){
     $.ajax({
@@ -174,12 +174,14 @@ $(document).ready(function(){
       url:'/app/controllers/bookings.php',
       data:'people='+people,
       success:function(html){
+        
         $('#exampleSelectDate').html(html);
         $('#exampleSelectTime').html('<option value=""></option>');
         $('#exampleSelectInstructor').html('<option value=""></option>');
         $('#submit').hide();
       }
     });
+    $('#capacity').val(people);
   }
 
   $('.number__btn').click(function(){
@@ -190,12 +192,14 @@ $(document).ready(function(){
         url:'/app/controllers/bookings.php',
         data:'people='+people,
         success:function(html){
+          
           $('#exampleSelectDate').html(html);
           $('#exampleSelectTime').html('<option value=""></option>');
           $('#exampleSelectInstructor').html('<option value=""></option>');
           $('#submit').hide();
         }
       });
+      $('#capacity').val(people);
     }
   });
 
@@ -251,7 +255,6 @@ $(document).ready(function(){
         }
       });
     }
-
   });
 });
 

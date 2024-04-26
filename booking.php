@@ -97,15 +97,16 @@
                 </div>
             </div>
             <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
+                <input name="capacity" id="capacity" value="" type="hidden">
                 <div class="mb-4">
                     <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
-                    <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
+                    <select name="sdate" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
                         <!-- Ajax запрос -->
                     </select>
                 </div>
                 <div class="mb-4" id="time" style="display:none;">
                     <label for="exampleSelectTime" class="form-label no-select">Выберите время</label>
-                    <select name="time" id="exampleSelectTime" class="form-select" data-placeholder="Выберите время">
+                    <select name="slot" id="exampleSelectTime" class="form-select" data-placeholder="Выберите время">
                         <!-- Ajax запрос -->
                     </select>
                 </div>
