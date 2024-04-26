@@ -68,6 +68,16 @@
                 </ul>
             </div>
         </div>
+        <?php
+            $user_id = $_SESSION['user_id'];
+            $role_id = $_SESSION['role_id'];
+            if($role_id == '3'){
+                $client = selectOne('clients',['user_id' => $user_id]);
+                $client_id = $client['client_id'];
+            }else{
+                $client_id = 0;
+            }
+        ?>
         <div class="form">
             <div class="form__title no-select">Бронирование</div>
             <div class="capacity">
@@ -97,6 +107,7 @@
                 </div>
             </div>
             <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
+                <input name="client" value="<?=$client_id?>" type="hidden">
                 <input name="capacity" id="capacity" value="" type="hidden">
                 <div class="mb-4">
                     <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>

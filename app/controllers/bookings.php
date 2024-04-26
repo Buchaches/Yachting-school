@@ -2,6 +2,7 @@
 include "../../path.php";
 include SITE_ROOT . "/app/database/db.php"; 
 
+// Обработка AJAX запроса
 if(!empty($_POST["people"])){
     $stringNumber = $_POST["people"];
     $people = (int)$stringNumber;
@@ -76,6 +77,7 @@ if(!empty($_POST["slotPrice"]) && !empty($_POST["numberPrice"])){
     }
 }
 
+// Обработка формы бронирования
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking__btn'])){
     tt($_POST);
 }
