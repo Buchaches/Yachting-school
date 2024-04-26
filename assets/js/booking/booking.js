@@ -77,14 +77,18 @@ function decrease() {
   activeBtn();
 }
 
-// -----------------------------   Select   -----------------------------
+// -----------------------------   Select2   -----------------------------
+
+// --------------   Дата   ---------------
 $( document ).ready(function() {
   $( '#exampleSelectDate' ).select2( {
       theme: "bootstrap-5",
       width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
       placeholder: $( this ).data( 'placeholder' ),
-      closeOnSelect: false,
       minimumResultsForSearch : Infinity,
+      templateResult: formatStateDate,
+      templateSelection: formatStateDate, 
+      escapeMarkup: function(m) { return m; },
       "language": {
         "noResults": function(){
             return "";
@@ -92,12 +96,24 @@ $( document ).ready(function() {
       }
   });
 
+  function formatStateDate(state) {
+    if (!state.id) {
+      return state.text;
+    }
+    var dateWeekArray = state.text.split('|');
+    var newHtml = '<span class="option-strong">' + dateWeekArray[0] + '</span> <span class="option-trait">|</span> <span>' + dateWeekArray[1] + '</span>';
+    return $(newHtml);
+  }
+
+// --------------   Время   --------------
   $( '#exampleSelectTime' ).select2( {
     theme: "bootstrap-5",
     width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
     placeholder: $( this ).data( 'placeholder' ),
-    closeOnSelect: false,
     minimumResultsForSearch : Infinity,
+    templateResult: formatStateTime,
+    templateSelection: formatStateTime, 
+    escapeMarkup: function(m) { return m; },
     "language": {
       "noResults": function(){
           return "";
@@ -105,12 +121,26 @@ $( document ).ready(function() {
     }
   }); 
 
+  function formatStateTime(state) {
+    if (!state.id) {
+      return state.text;
+    }
+    var wordsArray = state.text.split('|');
+  
+    var newHtml = '<span class="option-time">' + wordsArray[0] + '</span> <span class="option-trait">|</span> <span>' + wordsArray[1] + '</span> <span class="option-trait">|</span> <span class="option-capacity">' + wordsArray[2] + '</span>';
+  
+    return $(newHtml);
+  }
+
+// -----------   Инструкторы   -----------
   $( '#exampleSelectInstructor' ).select2( {
     theme: "bootstrap-5",
     width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
     placeholder: $( this ).data( 'placeholder' ),
-    closeOnSelect: false,
     minimumResultsForSearch : Infinity,
+    templateResult: formatStateInstructor,
+    templateSelection: formatStateInstructor, 
+    escapeMarkup: function(m) { return m; },
     "language": {
       "noResults": function(){
           return "";
@@ -118,6 +148,19 @@ $( document ).ready(function() {
     }
   }); 
 });
+
+function formatStateInstructor(state) {
+  if (!state.id) {
+    return state.text;
+  }
+  if (state.text.includes('|')) {
+    var dateWeekArray = state.text.split('|');
+    var newHtml = '<span style="font-weight:500">' + dateWeekArray[0] + '</span> <span class="option-trait">|</span> <span class="option-capacity">' + dateWeekArray[1] + '</span>';
+  } else {
+    var newHtml = '<span style="font-weight:500">' + state.text + '</span>';
+  }
+  return $(newHtml);
+}
 
 // ------------------------------   AJAX   ------------------------------
 
@@ -133,6 +176,7 @@ $(document).ready(function(){
       success:function(html){
         $('#exampleSelectDate').html(html);
         $('#exampleSelectTime').html('<option value=""></option>');
+        $('#exampleSelectInstructor').html('<option value=""></option>');
       }
     });
   }
@@ -147,14 +191,18 @@ $(document).ready(function(){
         success:function(html){
           $('#exampleSelectDate').html(html);
           $('#exampleSelectTime').html('<option value=""></option>');
+          $('#exampleSelectInstructor').html('<option value=""></option>');
         }
       });
     }
   });
 
-  // Дата
+//-----------------   Date   -----------------
   $('#exampleSelectDate').on('change', function() {
     var date = $(this).val();
+    if(date !=''){
+      $('#time').show();
+    }
     if(date){
       $.ajax({
         type:'POST',
@@ -162,12 +210,33 @@ $(document).ready(function(){
         data:'date='+date,
         success:function(html){
           $('#exampleSelectTime').html(html);
+          $('#exampleSelectInstructor').html('<option value=""></option>');
         }
       });
     }
   });
 
-  //Время
-  
+//-----------------   Time   -----------------
+  $('#exampleSelectTime').on('change', function() {
+    var slot = $(this).val();
+    var number = $('#number').text();
+    if(slot !=''){
+      $('#instructor').show();
+    }
+    if(slot,people){
+      $.ajax({
+        type:'POST',
+        url:'/app/controllers/bookings.php',
+        data: {
+          slot: slot,
+          number: number
+        },
+        success:function(html){
+          $('#exampleSelectInstructor').html(html);
+        }
+      });
+    }
+
+  });
 });
 

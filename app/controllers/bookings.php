@@ -24,7 +24,7 @@ if(!empty($_POST["people"])){
 
 if(!empty($_POST["date"])){
     $date = $_POST["date"];
-    $sql = "SELECT DISTINCT time_start FROM timeslots WHERE timeslots.date = '$date' ORDER BY time_start ASC"; //Поменять на вывод всего
+    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' ORDER BY time_start ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();
@@ -32,7 +32,31 @@ if(!empty($_POST["date"])){
         echo '<option value=""></option>';
         while($row = $query->fetch()){
             $time = formatTime($row['time_start']);
-            echo '<option value="'.$row['time_start'].'">'.$time.'</option>';
+            $capacity = $row['remaining_capacity'] . "/" . $row['total_capacity'];
+            $service = $row['name'];
+            echo '<option value="'.$row['slot_id'].'">'.$time.' | '.$service.' | '.$capacity.'</option>';
         }
+    }
+}
+
+if(!empty($_POST["slot"])){
+    $slot_id = $_POST["slot"];
+    $stringNumber = $_POST["number"];
+    $number = (int)$stringNumber;;
+    $sql = "SELECT instructor_timeslots.instructor_id, instructor_timeslots.remaining_capacity, instructor_timeslots.total_capacity, instructors.instructor_surname, instructors.instructor_name FROM instructor_timeslots INNER JOIN instructors ON instructor_timeslots.instructor_id = instructors.instructor_id WHERE slot_id = '$slot_id' AND remaining_capacity >= '$number' ORDER BY instructor_id ASC"; 
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $rowCount = $query->rowCount();
+    if($rowCount > 0){
+        echo '<option value=""></option>';
+        echo '<option value="NULL">Любой классный</option>';
+        while($row = $query->fetch()){
+            $fullName = $row['instructor_surname'] . " " . $row['instructor_name'];
+            $icapacity = $row['remaining_capacity'] . "/" . $row['total_capacity'];
+            echo '<option value="'.$row['instructor_id'].'">'.$fullName.' | '.$icapacity.'</option>';
+        }
+    }else{
+        $value = null;
+        echo '<option value="NULL">Любой классный</option>';
     }
 }

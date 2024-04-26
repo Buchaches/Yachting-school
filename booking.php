@@ -97,23 +97,24 @@
                 </div>
             </div>
             <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
-                <div class="mb-3">
+                <div class="mb-4">
                     <label for="exampleSelectDate" class="form-label no-select">Выберите дату</label>
                     <select name="date" id="exampleSelectDate" class="form-select" data-placeholder="Выберите дату">
-                        
+                        <!-- Ajax запрос -->
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-4" id="time" style="display:none;">
                     <label for="exampleSelectTime" class="form-label no-select">Выберите время</label>
                     <select name="time" id="exampleSelectTime" class="form-select" data-placeholder="Выберите время">
-
+                        <!-- Ajax запрос -->
                     </select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-4" id="instructor" style="display:none;">
                     <label for="exampleSelectInstructor" class="form-label no-select">Выберите инструктора</label>
                     <select name="instructor" id="exampleSelectInstructor" class="form-select" data-placeholder="Выберите инструктора">
-
+                        <!-- Ajax запрос -->
                     </select>
+                    <div class="mt-2">Мы стараемся учитывать ваши пожелания, но не всегда можем гарантировать присутствие конкретного инструктора.</div>
                 </div>
             </form>
         </div>

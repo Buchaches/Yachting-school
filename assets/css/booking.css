@@ -10,7 +10,7 @@ body{
     background-color: #D8EBFA;
     background-image: url(/assets/img/bg/Ellipse.svg);
     background-repeat: no-repeat;
-    background-position: right bottom;
+    background-position: right bottom -5px;
     display: flex;
     justify-content: center;
     background-size: contain;
@@ -21,14 +21,15 @@ body{
 .booking{
     margin: auto;
     width: 600px;
-    height: 100%;
-    border-radius: 15px;
-    overflow: hidden;
+    height: 100vh;
+    background-color: #fff;
 }
 
 /* ------------------    Header   ------------------*/
+
 .header{
     width: 100%;
+    height: 94px;
     position: relative;
     padding: 25px;
     display: flex;
@@ -69,8 +70,9 @@ body{
 /* ------------------    Form   ------------------*/
 
 .form{
-    background-color: #fff;
     padding: 20px;
+    height: calc(100vh - 94px);
+    overflow-y: auto;
 }
 
 .form__title{
@@ -83,9 +85,9 @@ body{
 /* -------   Capacity   -------*/
 
 .capacity{
-    margin: 20px 0;
+    margin: 24px 0;
     width: 100%;
-    height: 100%;
+    height: 54px;
     display: flex;
 }
 
@@ -111,7 +113,7 @@ body{
     align-items: flex-end;
     justify-content: center;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1;
     color: var(--primary-blue);
 }
@@ -128,4 +130,42 @@ body{
 .form-label{
     font-size: 16px;
     font-weight: 600;
+}
+
+/* Текст внутри select */
+.select2-container .select2-selection--single{
+    height: 42px;
+    display: flex;
+    align-items: center;
+}
+
+/* Текст внутри option и select*/
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option, 
+.select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered{
+    font-size: 17px;
+    font-weight: 400;
+}
+.select2-results__options{
+    max-height: calc(5 * 42px) !important;
+
+}
+.option-trait{
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.option-strong{
+    font-weight: 600;
+}
+
+.option-time{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.option-capacity{
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 19px;
 }
