@@ -114,7 +114,14 @@
                     <select name="instructor" id="exampleSelectInstructor" class="form-select" data-placeholder="Выберите инструктора">
                         <!-- Ajax запрос -->
                     </select>
-                    <div class="mt-2">Мы стараемся учитывать ваши пожелания, но не всегда можем гарантировать присутствие конкретного инструктора.</div>
+                    <div class="mt-2 mb-2">Мы стараемся учитывать ваши пожелания, но не всегда можем гарантировать присутствие конкретного инструктора.</div>
+                </div>
+                <div class="pt-4 mb-4 submit" id="submit" style="display:none;">
+                    <div>
+                        <div class="price-label">ЦЕНА</div>
+                        <div class="price" id="price"></div>
+                    </div>
+                    <button type="submit" class="booking__btn" name="booking__btn">Забронировать</button>
                 </div>
             </form>
         </div>

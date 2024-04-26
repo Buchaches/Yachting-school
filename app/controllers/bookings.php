@@ -2,12 +2,11 @@
 include "../../path.php";
 include SITE_ROOT . "/app/database/db.php"; 
 
-date_default_timezone_set('Europe/Moscow');
-$today = date('Y-m-d');
-
 if(!empty($_POST["people"])){
     $stringNumber = $_POST["people"];
     $people = (int)$stringNumber;
+    date_default_timezone_set('Europe/Moscow');
+    $today = date('Y-m-d');
     $sql = "SELECT DISTINCT timeslots.date FROM timeslots WHERE remaining_capacity >= '$people' AND timeslots.date >= '$today' ORDER BY timeslots.date ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
@@ -39,16 +38,15 @@ if(!empty($_POST["date"])){
     }
 }
 
-if(!empty($_POST["slot"])){
+if(!empty($_POST["slot"]) && !empty($_POST["number"])){
     $slot_id = $_POST["slot"];
     $stringNumber = $_POST["number"];
-    $number = (int)$stringNumber;;
+    $number = (int)$stringNumber;
     $sql = "SELECT instructor_timeslots.instructor_id, instructor_timeslots.remaining_capacity, instructor_timeslots.total_capacity, instructors.instructor_surname, instructors.instructor_name FROM instructor_timeslots INNER JOIN instructors ON instructor_timeslots.instructor_id = instructors.instructor_id WHERE slot_id = '$slot_id' AND remaining_capacity >= '$number' ORDER BY instructor_id ASC"; 
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();
     if($rowCount > 0){
-        echo '<option value=""></option>';
         echo '<option value="NULL">Любой классный</option>';
         while($row = $query->fetch()){
             $fullName = $row['instructor_surname'] . " " . $row['instructor_name'];
@@ -56,7 +54,24 @@ if(!empty($_POST["slot"])){
             echo '<option value="'.$row['instructor_id'].'">'.$fullName.' | '.$icapacity.'</option>';
         }
     }else{
-        $value = null;
         echo '<option value="NULL">Любой классный</option>';
+    }
+}
+
+if(!empty($_POST["slotPrice"]) && !empty($_POST["numberPrice"])){
+    $slot_id = $_POST["slotPrice"];
+    $stringNumber = $_POST["numberPrice"];
+    $number = (int)$stringNumber;
+    $sql = "SELECT services.price FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE slot_id = '$slot_id'"; 
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $rowCount = $query->rowCount();
+    $result = $query->fetch();
+    $price = $result['price'];
+    $totalPrice = (int)$price * $number;
+    if($rowCount > 0){
+        echo '' . $totalPrice . ' ₽';
+    }else{
+        echo '';
     }
 }
