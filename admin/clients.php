@@ -19,7 +19,7 @@
     <title>Админ панель - Клиенты</title>
     
     <!-- -------------   CSS   ------------- -->
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
     
@@ -61,7 +61,7 @@
                         }
                         echo ' </datalist>';                       
                     ?>
-                    <button type="Submit" name="search__btn" value="Search" class="admin__btn search__btn">Поиск</button>
+                    <button type="Submit" name="search__btn" value="Search" class="primary__btn search__btn">Поиск</button>
                 </form>
                 <div class="header__calendar">
                     <div class="calendar__text">

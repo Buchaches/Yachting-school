@@ -61,9 +61,28 @@ body {
 
 .submit__btn {
     font-weight: 600;
+    font-size: 16px;
     width: 100%; 
-    margin: 0 auto;
-    background-color: var(--accent-blue);
+    line-height: 1.5;
+    padding: .375rem .75rem;
+    color: #fff;
+    background-color: var(--primary-blue);
+    border-radius: 5px;
+    border: 1px solid var(--primary-blue);
+    transition: all .3s ease-in-out;
+}
+
+.submit__btn:hover{
+    background-color: #356694;
+}
+
+.submit__btn:focus{
+    background-color: #2c5278;
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25)
+}
+
+.submit__btn:active{
+    background-color: #2c5278;
 }
 
 .link{

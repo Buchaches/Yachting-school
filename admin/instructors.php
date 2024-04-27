@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
     
@@ -65,7 +65,7 @@
                         }
                         echo ' </datalist>';                       
                     ?>
-                    <button type="Submit" name="search__btn" value="Search" class="admin__btn search__btn">Поиск</button>
+                    <button type="Submit" name="search__btn" value="Search" class="primary__btn search__btn">Поиск</button>
                 </form>
                 <div class="header__calendar">
                     <div class="calendar__text">
@@ -88,7 +88,7 @@
                 <div class="main__container">
                     <div class="add__new">
                         <div class="add__text">Добавить инструктора</div>
-                        <a href="?action=add&id=none&error=0" class="admin__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
+                        <a href="?action=add&id=none&error=0" class="primary__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
                     </div>
                     <div class="row__counter">Всего инструкторов&nbsp;(<?=$totalClients = countRows("instructors")?>)</div>
                     <div class="table__container element-animation">
@@ -229,7 +229,7 @@
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
                                             <div class="mb-3">
-                                                <button type="submit" class="submit__btn btn btn-secondary" name="add__btn">Добавить</button>
+                                                <button type="submit" class="submit__btn primary__btn" name="add__btn">Добавить</button>
                                             </div>
                                         </form>
                                     </div>
@@ -241,7 +241,7 @@
                                         <a class="close" href="instructors.php">&times;</a>
                                         <div class="content">
                                             <h2 class="popup__title">Новая запись успешно добавлена!</h2>
-                                            <a href="instructors.php" class="admin__btn added__btn">OK</a>
+                                            <a href="instructors.php" class="primary__btn added__btn">OK</a>
                                         </div>
                                     </div>
                                 </div>';
@@ -325,7 +325,7 @@
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
                                             <div class="mb-3">
-                                                <button type="submit" class="submit__btn btn btn-secondary" name="edit__btn">Изменить</button>
+                                                <button type="submit" class="submit__btn primary__btn" name="edit__btn">Изменить</button>
                                             </div>
                                         </form>
 
@@ -338,7 +338,7 @@
                                         <a class="close" href="instructors.php">&times;</a>
                                         <div class="content">
                                             <h2 class="popup__title">Запись успешно изменена!</h2>
-                                            <a href="instructors.php" class="admin__btn added__btn">OK</a>
+                                            <a href="instructors.php" class="primary__btn added__btn">OK</a>
                                         </div>
                                     </div>
                                 </div>';
@@ -355,8 +355,8 @@
                                             <h3 class ="popup__subtitle">('.$email.')</h3>
                                         </div>
                                         <div class="popup__buttons">
-                                            <a href="'.BASE_URL.'app/controllers/admin/instructor.php?action=drop&id='.$id.'" class="admin__btn delete__btn">Да</a>
-                                            <a href="instructors.php" class="admin__btn delete__btn">Нет</a>
+                                            <a href="'.BASE_URL.'app/controllers/admin/instructor.php?action=drop&id='.$id.'" class="primary__btn delete__btn">Да</a>
+                                            <a href="instructors.php" class="primary__btn delete__btn">Нет</a>
                                         </div>
                                     </div>
                                 </div>

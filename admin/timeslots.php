@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
     
@@ -68,7 +68,7 @@
                 <div class="main__container">
                     <div class="add__new">
                         <div class="add__text">Добавить новый слот</div>
-                        <a href="?action=add&id=none&error=0" class="admin__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
+                        <a href="?action=add&id=none&error=0" class="primary__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
                     </div>
                     <div class="row__counter">Всего слотов&nbsp;(<?=$totalClients = countRows("instructors")?>)</div>
                     <form method="post" class="filter__form" action="">
@@ -89,7 +89,7 @@
                                 </select>
                             </div>
                             <div class="filter__col">
-                                <button type="submit" class="admin__btn filter__btn" name="filter__btn"><div><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24 M24,24H0" fill="none"/><path d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"/><path d="M0,0h24v24H0V0z" fill="none"/></g></svg></svg>Filter</div></button>
+                                <button type="submit" class="primary__btn filter__btn" name="filter__btn"><div><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24 M24,24H0" fill="none"/><path d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"/><path d="M0,0h24v24H0V0z" fill="none"/></g></svg></svg>Filter</div></button>
                             </div>
                         </div>
                     </form>                                
@@ -134,12 +134,12 @@
                                                 $key2++;
                                             }
                                         };
-                                        $sql .= " GROUP BY timeslots.slot_id ORDER BY timeslots.date,timeslots.time_start DESC";
+                                        $sql .= " GROUP BY timeslots.slot_id ORDER BY timeslots.date DESC";
                                     }else{
                                         $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
                                         FROM timeslots
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        ORDER BY timeslots.date,timeslots.time_start DESC";                            
+                                        ORDER BY timeslots.date DESC";                            
                                     }
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
@@ -343,7 +343,7 @@
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
                                             <div class="mb-3">
-                                                <button type="submit" class="submit__btn btn btn-secondary" name="add__btn">Создать</button>
+                                                <button type="submit" class="submit__btn primary__btn" name="add__btn">Создать</button>
                                             </div>
                                         </form>
                                     </div>
@@ -355,7 +355,7 @@
                                         <a class="close" href="timeslots.php">&times;</a>
                                         <div class="content">
                                             <h2 class="popup__title">Новый слот успешно создан!</h2>
-                                            <a href="timeslots.php" class="admin__btn added__btn">OK</a>
+                                            <a href="timeslots.php" class="primary__btn added__btn">OK</a>
                                         </div>
                                     </div>
                                 </div>';
@@ -485,7 +485,7 @@
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
                                             <div class="mb-3">
-                                                <button type="submit" class="submit__btn btn btn-secondary" name="edit__btn">Изменить</button>
+                                                <button type="submit" class="submit__btn primary__btn" name="edit__btn">Изменить</button>
                                             </div>
                                         </form>
                                     </div>
@@ -497,7 +497,7 @@
                                         <a class="close" href="timeslots.php">&times;</a>
                                         <div class="content">
                                             <h2 class="popup__title">Слот успешно изменён!</h2>
-                                            <a href="timeslots.php" class="admin__btn added__btn">OK</a>
+                                            <a href="timeslots.php" class="primary__btn added__btn">OK</a>
                                         </div>
                                     </div>
                                 </div>';
@@ -515,8 +515,8 @@
                                             <h3 class ="popup__subtitle"><strong>Дата: </strong>'.$date.'<br><strong> Время: </strong>'.$time.'</h3>
                                         </div>
                                         <div class="popup__buttons">
-                                            <a href="'.BASE_URL.'app/controllers/admin/timeslot.php?action=drop&id='.$id.'" class="admin__btn delete__btn">Да</a>
-                                            <a href="timeslots.php" class="admin__btn delete__btn">Нет</a>
+                                            <a href="'.BASE_URL.'app/controllers/admin/timeslot.php?action=drop&id='.$id.'" class="primary__btn delete__btn">Да</a>
+                                            <a href="timeslots.php" class="primary__btn delete__btn">Нет</a>
                                         </div>
                                     </div>
                                 </div>
@@ -532,8 +532,8 @@
                                             <h2 class="popup__title">Вы точно хотите убрать этого инструктора?</h2>
                                         </div>
                                         <div class="popup__buttons">
-                                            <a href="'.BASE_URL.'app/controllers/admin/timeslot.php?action=instructor-drop&id='.$id.'&slot='.$slot_id.'" class="admin__btn delete__btn">Да</a>
-                                            <a href="timeslots.php?action=edit&id='.$slot_id.'&error=0" class="admin__btn delete__btn">Нет</a>
+                                            <a href="'.BASE_URL.'app/controllers/admin/timeslot.php?action=instructor-drop&id='.$id.'&slot='.$slot_id.'" class="primary__btn delete__btn">Да</a>
+                                            <a href="timeslots.php?action=edit&id='.$slot_id.'&error=0" class="primary__btn delete__btn">Нет</a>
                                         </div>
                                     </div>
                                 </div>

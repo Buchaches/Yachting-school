@@ -65,7 +65,7 @@
                 <p class="form__err"><?=$errMsg?></p>
             </div>
             <div class="mb-3">
-                <button type="submit" class="submit__btn btn btn-secondary" name="reg__btn">Зарегистрироваться</button>
+                <button type="submit" class="submit__btn" name="reg__btn">Зарегистрироваться</button>
             </div>
             <div class="link">
                 <div class="link__text">Уже есть учетная запись?</div>

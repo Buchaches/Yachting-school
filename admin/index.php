@@ -19,7 +19,7 @@
     <title>Админ панель</title>
     
     <!-- -------------   CSS   ------------- -->
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
     

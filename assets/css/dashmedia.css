@@ -3,13 +3,16 @@
     .header{
         flex-wrap: wrap;
     }
+
     .header__title, .header__search, .header__calendar{
         flex: 1 0 auto;
     }
+
     .header__search{
         order: 3;
         flex-basis: 100%;
     }
+
     .header__calendar{
         justify-content: end;
     }
@@ -45,7 +48,6 @@
     .menu__active{
         border-right: 5px solid var(--accent-blue);
     }
-
 }
 
 @media (max-width:1000px) {
@@ -147,16 +149,20 @@
         padding: 0;
         border: none;
     }
+
     .popup{
         padding: 10px;
     }
+
     .popup .close{
         right: 12px;
         top: 2px;
     }
+
     .popup__title{
         font-size: 20px;
     }
+    
     .popup__subtitle{
         font-size: 16px;
     }
