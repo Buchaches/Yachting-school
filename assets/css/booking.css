@@ -21,9 +21,13 @@ body{
 .booking{
     margin: auto;
     width: 600px;
-    height: 727px;
-    /* height: 100vh; */
+    min-height: 727px;
     background-color: #fff;
+}
+@media (max-width:600px){
+    .booking{
+        min-height: 100vh;
+    }
 }
 
 /* ------------------    Header   ------------------*/
@@ -72,8 +76,6 @@ body{
 
 .form{
     padding: 20px;
-    height: calc(727px - 94px);
-    overflow-y: auto;
 }
 
 .form__title{

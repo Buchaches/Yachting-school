@@ -1,6 +1,6 @@
 <?php 
-    include "../path.php";
-    include "../app/database/db.php";
+    include "./../path.php";
+    include "./../app/database/db.php";
 ?>
 <?php 
     if(isset($_SESSION['email'])){
@@ -20,7 +20,7 @@
     
     <!-- -------------   CSS   ------------- -->
     <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="../assets/css/media.css">
+    <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
     
     <!-- -------------   Favicon   ------------- -->
@@ -39,6 +39,9 @@
         <?php include("../app/include/admin_sidebar.php"); ?>
         <div class="body">
             <header class="header">
+                <button id="sidebar-btn" class="sidebar-btn">
+                    <img id="sidebar-btn-img" src="./../assets/img/icon/sidebar_menu/sidebar-open.svg" alt="Nav button">
+                </button>   
                 <h1 class="header__title">Клиенты</h1>
                 <form action="" method="post" class="header__search">
                     <input type="search" id="search" name="search" class="header__searchbar" placeholder="Введите имя или email клиента">

@@ -175,6 +175,11 @@ body{
     border-bottom: 1.5px solid var(--primary-border);
     gap: 20px;
 }
+.sidebar-btn{
+    display: none;
+    max-width: 32px;
+    max-height: 32px;
+}
 
 .header__title{
     color: var(--primary-black);
@@ -184,7 +189,7 @@ body{
 
 .header__search {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     width: 60%;
     gap: 10px;
@@ -252,7 +257,7 @@ body{
 .main__container{
     width: calc(100% - 100px);
     margin: auto;
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 /*--------    Statistics    --------*/
@@ -399,7 +404,8 @@ body{
     margin: 0 20px;
     padding: 10px 0;
     display: flex;
-    gap: 30px;
+    column-gap: 30px;
+    row-gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -418,7 +424,7 @@ body{
 }
 
 .filter__control{
-    width: 300px;
+    width: 270px;
 }
 
 .filter__btn{
@@ -429,6 +435,7 @@ body{
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 /* ---------    Table    ---------*/
@@ -739,6 +746,6 @@ tr:hover{
 }
 .capacity{
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 10px;
 }
