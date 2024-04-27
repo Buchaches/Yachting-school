@@ -274,8 +274,8 @@
                 <div class="windy__wrapper">
                     <h2 class="windy__title">Прогноз погоды от Windy</h2>
                     <iframe width="100%" height="600"
-                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=57.596&lon=39.913&detailLat=57.61709494379496&detailLon=39.91058349609375&detail=true&message=true"
-                        frameborder="0"></iframe>
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=57.596&lon=39.913&detailLat=57.61709494379496&detailLon=39.91058349609375&detail=true&message=true" frameborder="0">
+                    </iframe>
                 </div>
             </div>
         </section>

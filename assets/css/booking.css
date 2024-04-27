@@ -209,6 +209,10 @@ body{
     background-color: #356694;
 }
 
+.booking__btn:focus{
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25);
+}
+
 .booking__btn:active{
     background-color: #2c5278;
 }

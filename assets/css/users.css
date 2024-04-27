@@ -78,7 +78,7 @@ body {
 
 .submit__btn:focus{
     background-color: #2c5278;
-    box-shadow: 0 0 0 3px rgba(13,110,253,.25)
+    box-shadow: 0 0 0 3px rgba(13,110,253,.25);
 }
 
 .submit__btn:active{

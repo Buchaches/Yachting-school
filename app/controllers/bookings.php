@@ -22,9 +22,11 @@ if(!empty($_POST["people"])){
     }
 }
 
-if(!empty($_POST["date"])){
+if(!empty($_POST["date"]) && !empty($_POST["number"])){
     $date = $_POST["date"];
-    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' ORDER BY time_start ASC";
+    $stringNumber = $_POST["number"];
+    $number = (int)$stringNumber;
+    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' AND timeslots.remaining_capacity >= '$number' ORDER BY time_start ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();

@@ -208,14 +208,18 @@ $(document).ready(function(){
 //-----------------   Date   -----------------
   $('#exampleSelectDate').on('change', function() {
     var date = $(this).val();
+    var number = $('#number').text();
     if(date !=''){
       $('#time').show();
     }
-    if(date){
+    if(date,number){
       $.ajax({
         type:'POST',
         url:'/app/controllers/bookings.php',
-        data:'date='+date,
+        data: {
+          date: date,
+          number: number
+        },
         success:function(html){
           $('#exampleSelectTime').html(html);
           $('#exampleSelectInstructor').html('<option value=""></option>');
