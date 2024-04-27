@@ -273,7 +273,7 @@
             <div class="windy__container">
                 <div class="windy__wrapper">
                     <h2 class="windy__title">Прогноз погоды от Windy</h2>
-                    <iframe width="100%" height="600"
+                    <iframe width="100%" height="600" style="border-radius: 20px;"
                         src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=57.596&lon=39.913&detailLat=57.61709494379496&detailLon=39.91058349609375&detail=true&message=true" frameborder="0">
                     </iframe>
                 </div>
@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <iframe
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor"width="100%" height="350" frameborder="0">
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor" width="100%" height="350" frameborder="0">
                     </iframe>
                 </div>
             </div>

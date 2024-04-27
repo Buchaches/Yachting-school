@@ -10,7 +10,9 @@
     margin: 0px auto;
     padding: 0 20px;
 }
-
+body{
+    background: var(--primary-black);
+}
 /* ------------------------------------    Header    ------------------------------------*/
 
 .header {
@@ -288,6 +290,7 @@
 
 .yacht {
     padding: clamp(1rem, -0.909rem + 9.55vw, 6.25rem) 0;
+    background: #fff;
 }
 
 .yacht__container{
@@ -521,7 +524,7 @@
 
 .windy {
     padding: clamp(1rem, -0.909rem + 9.55vw, 6.25rem) 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url(/assets/img/bg/sea.jpg);
+    background-image: linear-gradient(rgba(26, 26, 26, 1), rgba(0, 0, 0, 0)), url(/assets/img/bg/plash.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -534,14 +537,12 @@
 .windy__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 20px;
     overflow: hidden;
     color:#ffffff;
 }
 
 .windy__title {
-    padding: 20px;
+    padding-bottom: 40px;
     font-weight: 900;
     font-size: 30px;
 }
