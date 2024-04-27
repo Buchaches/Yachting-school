@@ -8,12 +8,12 @@
 body{
     min-height: 100vh;
     background-color: #CBDCEC;
-    background-image: url(/assets/img/bg/Ellipse.svg);
-    background-repeat: no-repeat;
-    background-position: right bottom -5px;
+    background-image: url(/assets/img/bg/Left.svg),url(/assets/img/bg/Right.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, right bottom;
+    background-size: contain, contain;
     display: flex;
     justify-content: center;
-    background-size: contain;
 }
 
 /* --------------------------------------    Booking   --------------------------------------*/
