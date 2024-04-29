@@ -20,6 +20,9 @@
     <title>Личный кабинет - Покупки</title>
     
     <!-- -------------   CSS   ------------- -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/dashmedia.css">
     <!-- -----------   END CSS   ----------- -->
@@ -64,9 +67,42 @@
             <main class="main">
                 <div class="main__container">
                     <div class="add__new">
-                        <a href="<?= BASE_URL . 'booking.php'?>" class="primary__btn add__btn" style="padding: 0 20px; width: 100%; max-width: 300px; "><div>Забронировать</div></a>
+                        <a href="<?= BASE_URL . 'booking.php'?>" class="primary__btn add__btn" style="width: 270px;"><div>Забронировать</div></a>
                     </div>
                     <div class="row__counter">Всего покупок&nbsp;(<?=$totalClients = countRows("bookings",['client_id'=>$_SESSION['client_id']])?>)</div>
+                    <form method="post" class="filter__form" action="bookings.php">
+                        <div class="filter__row">
+                            <div class="filter__col">
+                                <label for="exampleInputDate" class="filter__label">Дата</label>
+                                <input name="date" type="date" class="form-control filter__control">
+                            </div>
+                            <div class="filter__col">
+                                <label for="filterInstructors" class="filter__label">Инструктор</label>
+                                <select name="instructor" class="form-select" id="filterInstructors" style="width: 270px" data-placeholder="Выберите инструктора">
+                                    <option></option>
+                                    <?php 
+                                    $instructors = selectAll('instructors');
+                                    foreach($instructors as $key => $instructor):?>
+                                        <option value="<?=$instructor['instructor_id']?>"><?=$instructor['instructor_surname'] . " " . $instructor['instructor_name']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="filter__col">
+                                <label for="filterService" class="filter__label">Программа</label>
+                                <select name="service" class="form-select" id="filterService" style="width: 270px" data-placeholder="Выберите услугу">
+                                    <option></option>
+                                    <?php 
+                                    $services = selectAll('services');
+                                    foreach($services as $key => $service):?>
+                                        <option><?=$service['name']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="filter__col">
+                                <button type="submit" class="primary__btn filter__btn client" name="filter__btn"><div><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24 M24,24H0" fill="none"/><path d="M7,6h10l-5.01,6.3L7,6z M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6 c0,0,3.72-4.8,5.74-7.39C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"/><path d="M0,0h24v24H0V0z" fill="none"/></g></svg></svg>Filter</div></button>
+                            </div>
+                        </div>
+                    </form>                   
                     <div class="table__container element-animation">
                         <table class="main__table">
                             <thead>
@@ -83,13 +119,48 @@
                             <tbody>
                                 <?php
                                     $client_id = $_SESSION['client_id'];
-                                    $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity, bookings.timestamp, bookings.status
-                                    FROM bookings
-                                    INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
-                                    INNER JOIN services ON timeslots.service_id = services.service_id
-                                    LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
-                                    WHERE bookings.client_id = '$client_id'
-                                    ORDER BY timeslots.date ASC, timeslots.time_start ASC";                            
+                                    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['filter__btn'])){
+                                        $sqlpt1 = "";
+                                        if(!empty($_POST["date"])) {
+                                            $filterDate = $_POST["date"];
+                                            $sqlpt1 = "timeslots.date = '$filterDate'";
+                                        }
+                                    
+                                        $sqlpt2 = "";
+                                        if(!empty($_POST["instructor"])) {
+                                            $instructor_id = $_POST["instructor"];
+                                            $sqlpt2 = "instructors.instructor_id = '$instructor_id'";
+                                        }
+
+                                        $sqlpt3 = "";
+                                        if(!empty($_POST["service"])) {
+                                            $service = $_POST["service"];
+                                            $sqlpt3 = "services.name = '$service'";
+                                        }
+
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity, CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.timestamp, bookings.status
+                                        FROM bookings
+                                        INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
+                                        INNER JOIN services ON timeslots.service_id = services.service_id
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
+                                        WHERE bookings.client_id = '$client_id'";
+                                        $sqllist = array($sqlpt1, $sqlpt2, $sqlpt3);
+                                        foreach($sqllist as $key) {
+                                            if(!empty($key)) {
+                                                $sql .= " AND " . $key;
+                                            }
+                                        };
+                                        $sql .= " ORDER BY timeslots.date ASC, timeslots.time_start ASC";
+                                    }else{
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity, bookings.timestamp, bookings.status
+                                        FROM bookings
+                                        INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
+                                        INNER JOIN services ON timeslots.service_id = services.service_id
+                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
+                                        WHERE bookings.client_id = '$client_id'
+                                        ORDER BY timeslots.date ASC, timeslots.time_start ASC"; 
+                                    }                      
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
                                     $rowCount =  $query->rowCount();
@@ -114,7 +185,7 @@
                                         }                                     
                                     } else { 
                                         echo '<tr>
-                                        <td colspan="5">
+                                        <td colspan="7">
                                         <img src="./../assets/img/icon/not_found.svg" width="260px">
                                         </td>
                                         </tr>'; 
@@ -130,6 +201,8 @@
 <!-- ---------------   JS   --------------- -->
 <script src="../assets/js/animation.js"></script>
 <script src="../assets/js/libraries/lordicon.js"></script>
+<script src="../assets/js/libraries/jquery.min.js"></script>
+<script src="../assets/js/libraries/select2.min.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script src="../assets/js/client/bookings.js"></script>
 <!-- -------------   END js   ------------- -->
