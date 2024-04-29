@@ -172,7 +172,7 @@ function formatData($dateString){
         11 => 'Ноября',
         12 => 'Декабря'
     ];
-    $day = $dateObj->format('d');
+    $day = ltrim($dateObj->format('d'), '0');
     $monthNum = (int)$dateObj->format('m');
     $month = $months[$monthNum];
     return $day . ' ' . $month;

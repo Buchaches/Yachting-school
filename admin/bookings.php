@@ -66,11 +66,7 @@
 
             <main class="main">
                 <div class="main__container">
-                    <div class="add__new">
-                        <div class="add__text">Добавить новый слот</div>
-                        <a href="?action=add&id=none&error=0" class="primary__btn add__btn"><div><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add New</div></a>
-                    </div>
-                    <div class="row__counter">Всего слотов&nbsp;(<?=$totalClients = countRows("instructors")?>)</div>
+                    <div class="row__counter">Всего бронирований&nbsp;(<?=$totalBookings = countRows("bookings")?>)</div>
                     <form method="post" class="filter__form" action="">
                         <div class="filter__row">
                             <div class="filter__col">
@@ -97,11 +93,12 @@
                         <table class="main__table">
                             <thead>
                                 <tr>
-                                    <th>Дата</th>
-                                    <th>Время</th>
-                                    <th>Услуга</th>
-                                    <th>Свободных&nbsp;мест</th>
-                                    <th>Управление</th>
+                                    <th>Cлот</th>
+                                    <th>Клиент</th>
+                                    <th>Мест</th>
+                                    <th>Инструктор</th>
+                                    <th>Статус</th>
+                                    <th>Дата&nbsp;покупки</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,7 +107,7 @@
                                         $sqlpt1 = "";
                                         if(!empty($_POST["date"])) {
                                             $filterDate = $_POST["date"];
-                                            $sqlpt1 = "timeslots.date ='$filterDate'";
+                                            $sqlpt1 = "DATE(bookings.timestamp) = '$filterDate'";
                                         }
                                     
                                         $sqlpt2 = "";
@@ -119,11 +116,12 @@
                                             $sqlpt2 = "instructors.instructor_id = '$instructor_id'";
                                         }
                                     
-                                        $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity,GROUP_CONCAT(CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) SEPARATOR ', ') AS instructors_list
-                                        FROM timeslots
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity, CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.timestamp, bookings.status
+                                        FROM bookings
+                                        INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        INNER JOIN instructor_timeslots ON timeslots.slot_id = instructor_timeslots.slot_id
-                                        LEFT JOIN instructors ON instructor_timeslots.instructor_id = instructors.instructor_id";
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id";
                                         $sqllist = array($sqlpt1, $sqlpt2);
                                         $sqlkeywords = array(" WHERE "," AND ");
                                         $key2 = 0;
@@ -133,12 +131,15 @@
                                                 $key2++;
                                             }
                                         };
-                                        $sql .= " GROUP BY timeslots.slot_id ORDER BY timeslots.date,timeslots.time_start DESC";
+                                        $sql .= " ORDER BY bookings.status DESC, bookings.timestamp DESC";
                                     }else{
-                                        $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
-                                        FROM timeslots
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity, CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.timestamp, bookings.status
+                                        FROM bookings
+                                        INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        ORDER BY timeslots.date,timeslots.time_start DESC";                            
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        INNER JOIN instructors ON bookings.instructor_id = instructors.instructor_id
+                                        ORDER BY bookings.status DESC, bookings.timestamp DESC";                          
                                     }
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
@@ -147,27 +148,24 @@
                                         while ($row =  $query->fetch()) {
                                             $date = formatData($row['date']);
                                             $time_start = formatTime($row['time_start']);
-                                            $capacity = $row['remaining_capacity'] . '/' . $row['total_capacity'];
+                                            $slot = $date . ' | ' . $time_start . ' | ' . $row['name'];
+                                            if($row['status'] == 1){
+                                                $status = 'Оплачено';
+                                            }else {
+                                                $status = 'Не оплачено';
+                                            }
                                             echo "<tr>" .
-                                            "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $date . "</td>" .
-                                            "<td>" . $time_start . "</td>" .
-                                            "<td>" . $row['name'] . "</td>" .
-                                            "<td style='font-size:18px; font-weight:800; color: var(--accent-blue);'>" . $capacity . "</td>" .
-                                            "<td>
-                                            <div class='controls__wrapper'>
-                                            <a href='?action=view&id=".$row['slot_id']."' class='control__btn'>
-                                            <div><svg class='control__icon' xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z'/></svg>View</div></a>
-                                            <a href='?action=edit&id=".$row['slot_id']."&error=0' class='control__btn'>
-                                            <div><svg class='control__icon' xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z'/></svg>Edit</div></a>
-                                            <a href='?action=drop&id=".$row['slot_id']."&date=".$row['date']."&time=".$time_start."' class='control__btn'>
-                                            <div><svg class='control__icon' xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px'><path d='M0 0h24v24H0V0z' fill='none'/><path d='M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z'/></svg>Delete</div></a>
-                                            </div>
-                                            </td>" .
+                                            "<td style='font-size: 17px; font-weight: 500; white-space: nowrap;'>" . $slot . "</td>" .
+                                            "<td>" . $row['client'] . "</td>" .
+                                            "<td style='font-size: 20px; font-weight: 800; color: var(--accent-blue);'>" . $row['booked_capacity'] . "</td>" .
+                                            "<td>" . $row['instructor'] . "</td>" .
+                                            "<td class = 'colors' style = 'font-size: 17px; font-weight: 600; white-space: nowrap;'>" . $status . "</td>" .
+                                            "<td>" . $row['timestamp'] . "</td>" .
                                             "</tr>";
                                         }                                     
                                     } else { 
                                         echo '<tr>
-                                        <td colspan="5">
+                                        <td colspan="6">
                                         <img src="../assets/img/icon/not_found.svg" width="360px">
                                         <p>К сожалению, по вашему запросу ничего не найдено</p>
                                         <br><br>
