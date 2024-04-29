@@ -14,6 +14,7 @@ $( document ).ready(function() {
     });
 });
 
+// ----------------------------   Status   ----------------------------
 document.addEventListener("DOMContentLoaded", function() {
     let statusCells = document.getElementsByClassName("colors");
     

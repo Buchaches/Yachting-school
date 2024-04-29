@@ -50,6 +50,7 @@
                             <?php
                                 date_default_timezone_set('Europe/Moscow');
                                 $date = date('Y-m-d');
+                                $time = date("H:i:s");
                                 echo $date;
                             ?>
                         </p>
@@ -85,7 +86,7 @@
                         <div class="statistics__group">
                             <div class="statistics__item third element-animation">
                                 <div class="item__text">
-                                    <div class="item__count">6</div>
+                                    <div class="item__count"><?=$bookings = countRows('bookings',['status'=> 1]) ?></div>
                                     <div class="item__title">Покупок</div>
                                 </div>
                                 <div class="item__icon">
@@ -94,7 +95,7 @@
                             </div>
                             <div class="statistics__item fourth element-animation">
                                 <div class="item__text">
-                                    <div class="item__count"><?=$timeslots = countRows('timeslots',['date'=>$date]) ?></div>
+                                    <div class="item__count"><?=$timeslots = countRows('timeslots') ?></div>
                                     <div class="item__title">Слотов</div>
                                 </div>
                                 <div class="item__icon">
@@ -128,18 +129,18 @@
                                         FROM timeslots
                                         INNER JOIN services ON timeslots.service_id = services.service_id
                                         WHERE timeslots.date BETWEEN '$date' AND '$date' + INTERVAL 7 DAY
-                                        ORDER BY timeslots.date,timeslots.time_start DESC";                            
+                                        ORDER BY timeslots.date, timeslots.time_start ASC";                            
                                         $query = $pdo->prepare($sql);
                                         $query->execute();
                                         $rowCount =  $query->rowCount();
                                         if($rowCount > 0){
                                             while ($row =  $query->fetch()) {
-                                                $date = formatData($row['date']);
+                                                $formatDate = formatData($row['date']);
                                                 $time_start = formatTime($row['time_start']);
                                                 $capacity = $row['remaining_capacity'] . '/' . $row['total_capacity'];
 
                                                 echo "<tr>" .
-                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $date . "</td>" .
+                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $formatDate . "</td>" .
                                                 "<td>" . $time_start . "</td>" .
                                                 "<td>" . $row['name'] . "</td>" .
                                                 "<td style='font-size:18px; font-weight:800; color: var(--accent-blue);'>" . $capacity . "</td>" .
@@ -172,29 +173,33 @@
                                         <th>Дата</th>
                                         <th>Время</th>
                                         <th>Услуга</th>
-                                        <th>Свободных&nbsp;мест</th>
+                                        <th>Клиент</th>
+                                        <th>Мест</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
-                                        FROM timeslots
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity
+                                        FROM bookings
+                                        INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        ORDER BY timeslots.date,timeslots.time_start DESC";                            
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        WHERE DATE(bookings.timestamp) = '$date' AND bookings.status = 1
+                                        ORDER BY timeslots.date, timeslots.time_start ASC";                            
                                         $query = $pdo->prepare($sql);
                                         $query->execute();
                                         $rowCount =  $query->rowCount();
                                         if($rowCount > 0){
                                             while ($row =  $query->fetch()) {
-                                                $date = formatData($row['date']);
+                                                $formatDate = formatData($row['date']);
                                                 $time_start = formatTime($row['time_start']);
-                                                $capacity = $row['remaining_capacity'] . '/' . $row['total_capacity'];
-
+                                
                                                 echo "<tr>" .
-                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $date . "</td>" .
+                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $formatDate . "</td>" .
                                                 "<td>" . $time_start . "</td>" .
                                                 "<td>" . $row['name'] . "</td>" .
-                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue);'>" . $capacity . "</td>" .
+                                                "<td>" . $row['client'] . "</td>" .
+                                                "<td style='font-size:18px; font-weight:800; color: var(--accent-blue);'>" . $row['booked_capacity'] . "</td>" .
                                                 "</tr>";
                                             }                                     
                                         } else { 

@@ -70,7 +70,7 @@
                     <form method="post" class="filter__form" action="">
                         <div class="filter__row">
                             <div class="filter__col">
-                                <label for="exampleInputDate" class="filter__label">Дата</label>
+                                <label for="exampleInputDate" class="filter__label">Дата&nbsp;слота</label>
                                 <input name="date" type="date" class="form-control filter__control" id="exampleInputDate">
                             </div>
                             <div class="filter__col">
@@ -107,7 +107,7 @@
                                         $sqlpt1 = "";
                                         if(!empty($_POST["date"])) {
                                             $filterDate = $_POST["date"];
-                                            $sqlpt1 = "DATE(bookings.timestamp) = '$filterDate'";
+                                            $sqlpt1 = "timeslots.date = '$filterDate'";
                                         }
                                     
                                         $sqlpt2 = "";
@@ -138,7 +138,7 @@
                                         INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
                                         INNER JOIN clients ON bookings.client_id = clients.client_id
-                                        INNER JOIN instructors ON bookings.instructor_id = instructors.instructor_id
+                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
                                         ORDER BY bookings.status DESC, bookings.timestamp DESC";                          
                                     }
                                     $query = $pdo->prepare($sql);
@@ -155,7 +155,7 @@
                                                 $status = 'Не оплачено';
                                             }
                                             echo "<tr>" .
-                                            "<td style='font-size: 17px; font-weight: 500; white-space: nowrap;'>" . $slot . "</td>" .
+                                            "<td style='white-space: nowrap;'>" . $slot . "</td>" .
                                             "<td>" . $row['client'] . "</td>" .
                                             "<td style='font-size: 20px; font-weight: 800; color: var(--accent-blue);'>" . $row['booked_capacity'] . "</td>" .
                                             "<td>" . $row['instructor'] . "</td>" .
