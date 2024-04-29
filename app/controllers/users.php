@@ -63,10 +63,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login__btn'])){
             $_SESSION['role_id'] =  $existence['role_id'];
             if ($_SESSION['role_id'] === '3'){
                 $existence = selectOne('clients',['user_id'=> $_SESSION['user_id']]);
-                $_SESSION['name'] =  $existence['client_name'];
+                $_SESSION['name'] = $existence['client_name'];
+                $_SESSION['client_id'] = $existence['client_id'];
             }elseif ($_SESSION['role_id'] === '2'){
                 $existence = selectOne('instructors',['user_id'=> $_SESSION['user_id']]);
                 $_SESSION['name'] =  $existence['instructor_name'];
+                $_SESSION['instructor_id'] = $existence['instructor_id'];
             }
 
             header('location:' . BASE_URL);

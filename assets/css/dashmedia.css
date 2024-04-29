@@ -94,6 +94,8 @@
         right: 0;
         z-index: 999;
         backdrop-filter: blur(70px);
+        border-left: none;
+        box-shadow: none;
     }
 
     .sidebar.open .menu__link__item{

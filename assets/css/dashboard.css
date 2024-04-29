@@ -259,6 +259,13 @@ body{
     margin: auto;
     padding: 20px 0;
 }
+.main__title{
+    text-align: center;
+    padding: 20px 0;
+    color: var(--accent-blue);
+    font-weight: 900;
+    font-size: 22px;
+}
 
 /*--------    Statistics    --------*/
 
@@ -352,6 +359,55 @@ body{
     height: 60px;
     background: rgba(105, 145, 214, .09);
     border-radius: 5px;
+}
+
+/*----  Client  ----*/
+.statistics__item.client.element-animation{
+    padding: 0;
+    overflow: hidden;
+    height: 134px;
+    justify-content: end;
+}
+.statistics__item.first.client.element-animation{
+    background-image: url(/assets/img/service/trip.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.statistics__item.second.client.element-animation{
+    background-image: url(/assets/img/service/training.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.statistics__item.third.client.element-animation{
+    background-image: url(/assets/img/service/race.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.statistics__item.client.element-animation .item__text{
+    padding: 0 15px;
+    height: 100%;
+    min-width: 50%;
+    background-color: rgba(26,26,26, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.statistics__item.client.element-animation .item__count{
+    margin-bottom: 0;
+    margin-top: 6px;
+    font-weight: 700;
+    color: var(--light-blue);
+}
+.statistics__item.client.element-animation .item__title{
+    color: var(--light-blue);
+    font-weight: 700;
 }
 
 /*--------    Add New    --------*/
@@ -561,6 +617,11 @@ tr:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*----  Client  ----*/
+.table__container.client.element-animation{
+    max-width: 940px;
 }
 
 /* ---------    Controls    ---------*/

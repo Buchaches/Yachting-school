@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
+    <title>Личный кабинет - Покупки</title>
     
     <!-- -------------   CSS   ------------- -->
     <link rel="stylesheet" href="../assets/css/dashboard.css">
@@ -43,7 +43,7 @@
                 <button id="sidebar-btn" class="sidebar-btn">
                     <img id="sidebar-btn-img" src="./../assets/img/icon/sidebar_menu/sidebar-open.svg" alt="Nav button">
                 </button>   
-                <h1 class="header__title">Главная</h1>
+                <h1 class="header__title">Покупки</h1>
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -63,38 +63,11 @@
             </header>
             <main class="main">
                 <div class="main__container">
-                    <div class="main__title" style="padding-top:0px;">Статистика</div>
-                    <div class="statistics">
-                        <div class="statistics__group">
-                            <div class="statistics__item client first element-animation">
-                                <div class="item__text">
-                                    <div class="item__title">Прогулок</div>
-                                    <div class="item__count">
-                                        <?=$instructors = countRows('instructors') ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="statistics__item client second element-animation">
-                                
-                                <div class="item__text">
-                                    <div class="item__title">Тренировок</div>
-                                    <div class="item__count">
-                                        <?=$clients = countRows('clients') ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="statistics__item client third element-animation">
-                                <div class="item__text">
-                                    <div class="item__title">Регат</div>
-                                    <div class="item__count">
-                                        <?=$clients = countRows('clients') ?>
-                                    </div>                                   
-                                </div>
-                            </div>
-                        </div>
+                    <div class="add__new">
+                        <a href="<?= BASE_URL . 'booking.php'?>" class="primary__btn add__btn" style="padding: 0 20px; width: 100%; max-width: 300px; "><div>Забронировать</div></a>
                     </div>
-                    <div class="main__title">Активные покупки</div>
-                    <div class="table__container client element-animation">
+                    <div class="row__counter">Всего покупок&nbsp;(<?=$totalClients = countRows("bookings",['client_id'=>$_SESSION['client_id']])?>)</div>
+                    <div class="table__container element-animation">
                         <table class="main__table">
                             <thead>
                                 <tr>
@@ -103,17 +76,19 @@
                                     <th>Услуга</th>
                                     <th>Инструктор</th>
                                     <th>Мест</th>
+                                    <th>Статус</th>
+                                    <th>Дата&nbsp;покупки</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                     $client_id = $_SESSION['client_id'];
-                                    $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity
+                                    $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity, bookings.timestamp, bookings.status
                                     FROM bookings
                                     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                     INNER JOIN services ON timeslots.service_id = services.service_id
                                     LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
-                                    WHERE bookings.client_id = '$client_id' AND timeslots.date >= '$date'
+                                    WHERE bookings.client_id = '$client_id'
                                     ORDER BY timeslots.date ASC, timeslots.time_start ASC";                            
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
@@ -122,13 +97,19 @@
                                         while ($row =  $query->fetch()) {
                                             $formatDate = formatData($row['date']);
                                             $time_start = formatTime($row['time_start']);
-
+                                            if($row['status'] == 1){
+                                                $status = 'Оплачено';
+                                            }else {
+                                                $status = 'Не оплачено';
+                                            }
                                             echo "<tr>" .
                                             "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $formatDate . "</td>" .
                                             "<td>" . $time_start . "</td>" .
                                             "<td>" . $row['name'] . "</td>" .
                                             "<td>" . $row['instructor'] . "</td>" .
                                             "<td style='font-size: 20px; font-weight: 800; color: var(--accent-blue);'>" . $row['booked_capacity'] . "</td>" .
+                                            "<td class = 'colors' style = 'font-size: 17px; font-weight: 600; white-space: nowrap;'>" . $status . "</td>" .
+                                            "<td>" . $row['timestamp'] . "</td>" .
                                             "</tr>";
                                         }                                     
                                     } else { 
@@ -141,7 +122,7 @@
                                 ?>           
                             </tbody>
                         </table>
-                    </div>                
+                    </div>
                 </div>
             </main>
         </div>
@@ -150,6 +131,7 @@
 <script src="../assets/js/animation.js"></script>
 <script src="../assets/js/libraries/lordicon.js"></script>
 <script src="../assets/js/sidebar.js"></script>
+<script src="../assets/js/client/bookings.js"></script>
 <!-- -------------   END js   ------------- -->
 
 </body>
