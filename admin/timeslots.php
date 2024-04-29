@@ -545,11 +545,11 @@
         </div>
     </div>
 <!-- ---------------   JS   --------------- -->
+<script src="../assets/js/libraries/lordicon.js"></script>
+<script src="../assets/js/libraries/jquery.min.js"></script>
+<script src="../assets/js/libraries/select2.min.js"></script>
 <script src="../assets/js/animation.js"></script>
-<script src="../assets/js/lordicon.js"></script>
-<script src="../assets/js/admin/sidebar.js"></script>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/select2.min.js"></script>
+<script src="../assets/js/sidebar.js"></script>
 <script src="../assets/js/admin/timeslots.js"></script>
 <!-- -------------   END js   ------------- -->
 

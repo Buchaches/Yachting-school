@@ -143,9 +143,9 @@
         </div>
     </div>
 <!-- ---------------   JS   --------------- -->
+<script src="../assets/js/libraries/lordicon.js"></script>
 <script src="../assets/js/animation.js"></script>
-<script src="../assets/js/lordicon.js"></script>
-<script src="../assets/js/admin/sidebar.js"></script>
+<script src="../assets/js/sidebar.js"></script>
 <script src="../assets/js/admin/clients.js"></script>
 <!-- -------------   END js   ------------- -->
 

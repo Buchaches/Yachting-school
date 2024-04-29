@@ -51,11 +51,11 @@
                 <ul class="header__account__menu" id="dropdownMenu">
                     <?php if ($_SESSION['role_id'] === '3'): ?>
                         <li class="header__account__menu-items">
-                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'client/client.php'?>" class="">Личный кабинет</a>
+                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'client/index.php'?>" class="">Личный кабинет</a>
                         </li>
                     <?php elseif ($_SESSION['role_id'] === '2'): ?>
                         <li class="__account__menu-items">
-                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'instructor/instructor.php'?>" class="">Инструкторская</a>
+                            <a class="header__account__menu-item" href="<?php echo BASE_URL . 'instructor/index.php'?>" class="">Инструкторская</a>
                         </li>
                     <?php elseif ($_SESSION['role_id'] === '1'): ?>
                         <li class="__account__menu-items">
@@ -140,9 +140,9 @@
     </div>
 
 <!-- -------------   JS   ------------- -->
-<script src="./assets/js/jquery.min.js"></script>
-<script src="./assets/js/select2.min.js"></script>
-<script src="./assets/js/lordicon.js"></script>
+<script src="./assets/js/libraries/jquery.min.js"></script>
+<script src="./assets/js/libraries/select2.min.js"></script>
+<script src="./assets/js/libraries/lordicon.js"></script>
 <script src="./assets/js/booking/booking.js"></script>
 <!-- -----------   END JS   ----------- -->
 

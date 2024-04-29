@@ -62,7 +62,7 @@
 
 <!-- -------------   JS   ------------- -->
 <script src="./assets/js/header.js"></script>
-<script src="../assets/js/lordicon.js"></script>
+<script src="../assets/js/libraries/lordicon.js"></script>
 <script src="./assets/js/login/login.js"></script>
 <!-- -----------   END JS   ----------- -->
 
