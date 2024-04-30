@@ -800,10 +800,15 @@ tr:hover{
     transition: all .3s ease-in-out;
     opacity: 1;
 }
+
 .drop__btn:hover, .drop__btn:active, .drop__btn:focus{
     background-color: #a71c27;
 }
 
+.form-control:focus.del{
+    box-shadow: 0 0 0 3px rgba(248, 41, 41, 0.25) !important;
+    border-color: #c52a2a40 !important;
+}
 /*-----  View  -----*/
 
 .content__title{

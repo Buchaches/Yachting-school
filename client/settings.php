@@ -186,7 +186,7 @@
                                                 <input name="client_id" value="'.$id.'" type="hidden">
                                                 <div class="mb-3">
                                                     <label for="exampleInputDel" class="form-label">Для подтверждения введите:  <strong style="color:#E32636;">УДАЛИТЬ</strong></label>
-                                                    <input name="del" type="tex" class="form-control" required>
+                                                    <input name="del" type="tex" class="form-control del" required>
                                                 </div>
                                                 <div class="mb-3">
                                                     <p class="form__err">'.$errorlist[$errorGet].'</p>
