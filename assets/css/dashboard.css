@@ -365,8 +365,9 @@ body{
 .statistics__item.client.element-animation{
     padding: 0;
     overflow: hidden;
-    height: 134px;
+    height: 150px;
     justify-content: end;
+    border: none;
 }
 .statistics__item.first.client.element-animation{
     background-image: url(/assets/img/service/trip.jpg);
@@ -403,10 +404,10 @@ body{
     margin-bottom: 0;
     margin-top: 6px;
     font-weight: 700;
-    color: var(--light-blue);
+    color: #CBDCEC;
 }
 .statistics__item.client.element-animation .item__title{
-    color: var(--light-blue);
+    color: #CBDCEC;
     font-weight: 700;
 }
 
@@ -795,22 +796,96 @@ tr:hover{
     font-size: 17px;
     padding-bottom: 5px;
 }
+
 .content__text{
     padding-bottom: 5px;
     max-width: 550px;
 }
+
 .date_time{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
+
 .section__container{
     display: flex;
     align-items: baseline;
     gap: 10px;
 }
+
 .capacity{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+/*-----  Settings  -----*/
+
+.settings__items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.settings__link.element-animation {
+    width: 100%;
+    border: 2px solid var(--primary-border);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    color: #1a1a1a;
+
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    transition: all 1.2s;
+}
+
+.settings__link.element-animation.element-show{
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+.settings__link.delete.element-animation.element-show{
+    -webkit-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.settings__link:hover, .settings__link:active, .settings__link:focus{
+    background-color: var(--primary-border);
+}
+
+.settings__img {
+    min-width: 60px;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(105, 145, 214, .09);
+}
+
+.settings__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--accent-blue);
+}
+
+.settings__link.delete .settings__title{
+    color: #E32636;
+}
+
+.settings__desc {
+    font-size: 15px;
+    font-weight: 500;
 }
