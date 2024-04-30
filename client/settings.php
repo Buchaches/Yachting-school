@@ -73,7 +73,7 @@
                                 <div class="settings__desc">Отредактировать данные профиля и изменить пароль</div>
                             </div>
                         </a>
-                        <a href="?action=drop&id=<?=$_SESSION['client_id']?>" class="settings__link delete element-animation">
+                        <a href="?action=drop&id=<?=$_SESSION['client_id']?>&error=0" class="settings__link delete element-animation">
                             <div class="settings__img">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px" fill="#E32636"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"/></svg>
                             </div>
@@ -170,23 +170,34 @@
                                     </div>';
                                 }
                             }else if($action == 'drop'){
-                                $email = $_SESSION['email'];
-                                echo '
-                                <div id="popup" class="overlay">
-                                    <div class="popup">
-                                        <a class="close" href="settings.php">&times;</a>
-                                        <div class="content">
-                                            <div>
-                                                <h2 class="popup__title">Вы точно хотите удалить свой профиль?</h2>
-                                                <h3 class ="popup__subtitle">'.$email.'</h3>
-                                            </div>
-                                            <div class="popup__buttons">
-                                                <a href="'.BASE_URL.'app/controllers/client/settings.php?action=drop&id='.$id.'" class="primary__btn delete__btn">Да</a>
-                                                <a href="settings.php" class="primary__btn delete__btn">Нет</a>
-                                            </div>
+                                $errorGet=$_GET["error"];
+                                $errorlist= array(
+                                    '1'=>'<strong>"УДАЛИТЬ"</strong> введено не верно!',
+                                    '2'=>'',
+                                    '0'=>'',
+                                );
+                                if($errorGet!= '2'){
+                                    echo '
+                                    <div id="popup" class="overlay">
+                                        <div class="popup">
+                                            <a class="close" href="settings.php">&times;</a>
+                                            <form class="add__form row" method="post" action="'. BASE_URL .'app/controllers/client/settings.php">
+                                                <h2 class="form__title">Удаление профиля</h2>
+                                                <input name="client_id" value="'.$id.'" type="hidden">
+                                                <div class="mb-3">
+                                                    <label for="exampleInputDel" class="form-label">Для подтверждения введите:  <strong style="color:#E32636;">УДАЛИТЬ</strong></label>
+                                                    <input name="del" type="tex" class="form-control" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <p class="form__err">'.$errorlist[$errorGet].'</p>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button type="submit" class="primary__btn drop__btn" name="drop__btn">Удалить</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                </div>';
+                                    </div>';
+                                }
                             }
                         }
                     ?>

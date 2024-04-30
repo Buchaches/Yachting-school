@@ -47,13 +47,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit__btn'])){
     }
     header("location:" . BASE_URL . "client/settings.php?action=edit&id=".$client_id."&error=".$error);
 }
-// Удаление клиента
-if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'drop'){
-    $id=$_GET["id"];
-    $result = selectOne("clients",["client_id"=> $id]);
-    $user_id = $result["user_id"];
-    deleteOne("clients","client_id",$id);
-    deleteOne("users","user_id",$user_id);
-    header("location:" . BASE_URL . "logout.php");
-}
 
+// Удаление клиента
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['drop__btn'])){
+    $del = trim($_POST['del']);
+    if($del !== 'УДАЛИТЬ'){
+        $error= '1';
+        header("location:" . BASE_URL . "client/settings.php?action=drop&id=".$client_id."&error=".$error);
+    }else{
+        $id=$_POST["client_id"];
+        $result = selectOne("clients",["client_id"=> $id]);
+        $user_id = $result["user_id"];
+        deleteOne("clients","client_id",$id);
+        deleteOne("users","user_id",$user_id);
+        header("location:" . BASE_URL . "logout.php");
+    }
+}
