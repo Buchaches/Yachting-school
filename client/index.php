@@ -10,7 +10,7 @@
     }else{
         header('location:' . BASE_URL . 'login.php');
     }
-    
+    $client_id = $_SESSION['client_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +70,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Прогулок</div>
                                     <div class="item__count">
-                                        <?=$instructors = countRows('instructors') ?>
+                                        <?=$trip=countRowsBooking($client_id, 1)?>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Тренировок</div>
                                     <div class="item__count">
-                                        <?=$clients = countRows('clients') ?>
+                                        <?=$training=countRowsBooking($client_id, 2)?>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Регат</div>
                                     <div class="item__count">
-                                        <?=$clients = countRows('clients') ?>
+                                        <?=$race=countRowsBooking($client_id, 3)?>
                                     </div>                                   
                                 </div>
                             </div>
@@ -107,7 +107,6 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $client_id = $_SESSION['client_id'];
                                     $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity
                                     FROM bookings
                                     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id

@@ -10,7 +10,7 @@
     }else{
         header('location:' . BASE_URL . 'login.php');
     }
-    
+    $client_id = $_SESSION['client_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +118,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $client_id = $_SESSION['client_id'];
+                                    
                                     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['filter__btn'])){
                                         $sqlpt1 = "";
                                         if(!empty($_POST["date"])) {

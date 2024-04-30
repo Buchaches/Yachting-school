@@ -10,7 +10,6 @@
     }else{
         header('location:' . BASE_URL . 'login.php');
     }
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">

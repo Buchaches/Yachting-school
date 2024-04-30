@@ -155,6 +155,21 @@ function countRows($table, $params = []) {
     return $result['total_rows'];
 }
 
+// Всего покупок клиентами по ввиду услуги
+function countRowsBooking($client_id, $service_id){
+    global $pdo;
+    $sql = "SELECT COUNT(*) as total_rows
+    FROM bookings
+    INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
+    INNER JOIN services ON timeslots.service_id = services.service_id
+    WHERE bookings.client_id = '$client_id' AND services.service_id = '$service_id'";
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    dbCheckError($query);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    return $result['total_rows'];
+}
+
 // Форматирование даты
 function formatData($dateString){
     $dateObj = DateTime::createFromFormat('Y-m-d', $dateString);
