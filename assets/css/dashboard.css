@@ -737,7 +737,7 @@ tr:hover{
     margin-bottom: 0;
     text-align: center;
     font-weight: 500;
-    color: #E32636;
+    color: var(--error-red);
 }
 
 .submit__btn {
@@ -756,7 +756,7 @@ tr:hover{
     width: 100%; 
     margin: 0 auto;
     height: 38px;
-    background-color: #E32636;
+    background-color: var(--error-red);
     border: none;
     box-shadow: none;
     transition: all .3s ease-in-out;
@@ -864,7 +864,7 @@ tr:hover{
 }
 
 .settings__link.delete .settings__title{
-    color: #E32636;
+    color: var(--error-red);
 }
 
 .settings__desc {

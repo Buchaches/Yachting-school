@@ -56,7 +56,7 @@ body {
     margin-bottom: 0;
     text-align: center;
     font-weight: 500;
-    color: #E32636;
+    color: var(--error-red);
 }
 
 .submit__btn {
