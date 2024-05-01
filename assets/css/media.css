@@ -139,6 +139,10 @@
     .windy__title {
         font-size: 20px;
     }
+    .popup{
+        width: 90%;
+        height: 75%;
+    }
 }
 
 @media (max-width:400px) {
