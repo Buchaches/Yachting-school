@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </form>                                
-                    <div class="table__container element-animation">
+                    <div class="table__container">
                         <table class="main__table">
                             <thead>
                                 <tr>
@@ -212,7 +212,7 @@
                             <div id="popup" class="overlay">
                                 <div class="popup">
                                     <a class="close" href="timeslots.php">&times;</a>
-                                    <div class="content" style="padding:0 20px 20px;">
+                                    <div class="content" style="padding: 20px;">
                                         <div class="content_section">
                                             <div class="section__container">
                                                 <p class="content__title">Услуга:</p>
@@ -242,7 +242,7 @@
                                             <p class="content__title">Инструкторы:</p>
                                             <br>
                                             <div class="table__container" style="max-height: 284px; overflow-y: auto;">
-                                                <table class="main__table element-animation">
+                                                <table class="main__table">
                                                     <thead>
                                                         <tr>
                                                             <th>Имя инструктора</th>
@@ -431,7 +431,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <div class="table__container" style="max-height: 204px; overflow-y: auto;">
-                                                    <table class="main__table element-animation">
+                                                    <table class="main__table">
                                                         <thead>
                                                             <tr>
                                                                 <th>Имя инструктора</th>

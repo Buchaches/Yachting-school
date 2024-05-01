@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="table__container element-animation">
+                    <div class="table__container">
                         <table class="main__table">
                             <thead>
                                 <tr>
@@ -184,7 +184,6 @@
 <script src="../assets/js/libraries/lordicon.js"></script>
 <script src="../assets/js/libraries/jquery.min.js"></script>
 <script src="../assets/js/libraries/select2.min.js"></script>
-<script src="../assets/js/animation.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script src="../assets/js/admin/bookings.js"></script>
 <!-- -------------   END js   ------------- -->

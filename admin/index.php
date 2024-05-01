@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="table__wrapper">
-                        <div class="table__item element-animation">
+                        <div class="table__item">
                             <div class="table__desc">
                                 <div class="desc__title">
                                     Слоты на ближайшие 7 дней
@@ -158,7 +158,7 @@
                             </table>
                         </div>
 
-                        <div class="table__item element-animation">
+                        <div class="table__item">
                             <div class="table__desc">
                                 <div class="desc__title">
                                     Сегодняшние покупки

@@ -83,7 +83,7 @@
             <main class="main">
                 <div class="main__container">
                     <div class="row__counter">Всего клиентов&nbsp;(<?=$totalClients = countRows("clients")?>)</div>
-                    <div class="table__container element-animation">
+                    <div class="table__container">
                         <table class="main__table">
                             <thead>
                                 <tr>
@@ -144,7 +144,6 @@
     </div>
 <!-- ---------------   JS   --------------- -->
 <script src="../assets/js/libraries/lordicon.js"></script>
-<script src="../assets/js/animation.js"></script>
 <script src="../assets/js/sidebar.js"></script>
 <script src="../assets/js/admin/clients.js"></script>
 <!-- -------------   END js   ------------- -->

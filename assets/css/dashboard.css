@@ -497,26 +497,11 @@ body{
 
 /* ---------    Table    ---------*/
 
-.table__container.element-animation{
+.table__container{
     max-height: 600px;
     width: 100%;
     overflow: auto;
     margin: auto;
-    
-    opacity: 0;
-    -webkit-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    transform: translateY(10px);
-    -webkit-transition: all 1.2s;
-    -o-transition: all 1.2s;
-    transition: all 1.2s;
-}
-
-.table__container.element-animation.element-show{
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
 }
 
 .table__wrapper{
@@ -528,35 +513,12 @@ body{
     gap: 60px;
 }
 
-.table__item.element-animation{
+.table__item{
     width: 600px;
     max-height: 580px;
     overflow: auto;
-
-    opacity: 0;
-    -webkit-transform: translateY(10px);
-    -ms-transform: translateY(10px);
-    transform: translateY(10px);
-    -webkit-transition: all 1.2s;
-    -o-transition: all 1.2s;
-    transition: all 1.2s;
 }
 
-.table__item.element-animation.element-show{
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition-delay: 0.25s;
-    -o-transition-delay: 0.25s;
-    transition-delay: 0.25s;
-}
-
-.table__item.element-animation:nth-of-type(2).element-show{
-    -webkit-transition-delay: 0.5s;
-    -o-transition-delay: 0.5s;
-    transition-delay: 0.5s;
-}
 .table__desc {
     margin-bottom: 20px;
 }
@@ -621,7 +583,7 @@ tr:hover{
 }
 
 /*----  Client  ----*/
-.table__container.client.element-animation{
+.table__container.client{
     max-width: 940px;
 }
 

@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="main__title">Купленные слоты</div>
-                    <div class="table__container client element-animation">
+                    <div class="table__container client">
                         <table class="main__table">
                             <thead>
                                 <tr>
