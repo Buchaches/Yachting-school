@@ -2,6 +2,7 @@
 const header = document.querySelector('.header');
 const header_Height = document.querySelector('header').offsetHeight;
 
+
 window.addEventListener('scroll', function() {
   if (window.scrollY > header_Height) {
     header.classList.add('scrolled');
@@ -13,6 +14,12 @@ window.addEventListener('scroll', function() {
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav__link');
 const headerHeight = document.querySelector('header').offsetHeight;
+
+navBtn.onclick = () => {
+  if(nav.classList.toggle('open') && window.scrollY < header_Height){
+    header.classList.add('scrolled');
+  }
+}
 
 function onScroll() {
     let scrollPosition = document.documentElement.scrollTop + headerHeight;
@@ -35,6 +42,7 @@ function onScroll() {
 }
 navLinks[0].classList.add('active');
 window.addEventListener('scroll', onScroll);
+
 // ---------------------------   Swiper   ---------------------------
 
 const swiper = new Swiper('.instructors-slider', {

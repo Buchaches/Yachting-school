@@ -157,6 +157,7 @@ body{
  }
  
  .welcome__text.element-animation {
+    margin: 80px 0;
     max-width: 558px;
     padding: 40px;
     transition: all 0.3s linear;
