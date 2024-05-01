@@ -2,6 +2,14 @@
     include "path.php"; 
     include "./app/controllers/users.php";
 ?>
+<?php 
+    if(isset($_SESSION['email'])){
+        if($_SESSION["email"] == ""){
+            header('location:' . BASE_URL. 'login.php');
+        }
+        header('location:' . BASE_URL);
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">

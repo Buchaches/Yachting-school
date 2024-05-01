@@ -102,7 +102,8 @@
         top: 0;
         right: 0;
         z-index: 999;
-        background-color:#eff4fd;
+        -webkit-backdrop-filter: blur(70px);
+        backdrop-filter: blur(70px);
         border-left: none;
         box-shadow: none;
     }
