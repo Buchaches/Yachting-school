@@ -228,7 +228,7 @@
                                             <div class="mb-3">
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="pb-3">
                                                 <button type="submit" class="submit__btn primary__btn" name="add__btn">Добавить</button>
                                             </div>
                                         </form>
@@ -324,7 +324,7 @@
                                             <div class="mb-3">
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="pb-3">
                                                 <button type="submit" class="submit__btn primary__btn" name="edit__btn">Изменить</button>
                                             </div>
                                         </form>

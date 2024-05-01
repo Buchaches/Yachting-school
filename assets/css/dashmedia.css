@@ -146,15 +146,7 @@
     .filter__label {
         text-align: end;
     }
-}
-@media (max-width:463px){
-    /* Filter */
-    .filter__label {
-        text-align: center;
-    }
-}
-
-@media (max-width:425px){
+    
     /* Popup */
     .add__form{
         padding: 0;
@@ -162,9 +154,10 @@
     }
 
     .popup{
-        padding: 10px;
+        padding: 10px 10px 30px 10px;
+        border-radius: 0;
     }
-
+    
     .popup .close{
         right: 12px;
         top: 2px;
@@ -177,6 +170,18 @@
     .popup__subtitle{
         font-size: 16px;
     }
+}
+
+@media (max-width:463px){
+
+    /* Filter */
+    .filter__label {
+        text-align: center;
+    }
+
+}
+
+@media (max-width:425px){
 
     /* Statistics */
     .desc__title{

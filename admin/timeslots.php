@@ -306,13 +306,13 @@
                                                 echo '    
                                                 </select>
                                             </div>
-                                            <div class="mb-3">
-                                                <div class="row mb-3">
-                                                    <div class="col">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
                                                         <label for="exampleInputDate" class="form-label">Дата</label>
                                                         <input name="date" type="date" class="form-control" id="exampleInputDate" required value="'.$date.'">
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col mb-3">
                                                         <label for="exampleInputTime" class="form-label">Время</label>
                                                         <input name="time_start" type="time" class="form-control" id="exampleInputTime" required>
                                                     </div>
@@ -342,7 +342,7 @@
                                             <div class="mb-3">
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="pb-3">
                                                 <button type="submit" class="submit__btn primary__btn" name="add__btn">Создать</button>
                                             </div>
                                         </form>
@@ -407,13 +407,13 @@
                                                 echo '    
                                                 </select>
                                             </div>
-                                            <div class="mb-3">
+                                            <div>
                                                 <div class="row">
-                                                    <div class="col">
+                                                    <div class="col mb-3">
                                                         <label for="exampleInputDate" class="form-label">Дата</label>
                                                         <input name="date" type="date" value="'.$date.'" class="form-control" id="exampleInputDate" value="'.$date.'" required>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col mb-3">
                                                         <label for="exampleInputTime" class="form-label">Время</label>
                                                         <input name="time_start" type="time" value="'.$time_start.'" class="form-control" id="exampleInputTime" required>
                                                     </div>
@@ -484,7 +484,7 @@
                                             <div class="mb-3">
                                                 <p class="form__err">'.$errorlist[$errorGet].'</p>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="pb-3">
                                                 <button type="submit" class="submit__btn primary__btn" name="edit__btn">Изменить</button>
                                             </div>
                                         </form>

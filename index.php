@@ -87,7 +87,7 @@
                 <?php else:?>
                     <div class="header__account">
                         <a href="<?php echo BASE_URL . 'login.php'?>" class="header__account__login">
-                            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" colors="primary:#ffffff" style="width:32px;height:32px"></lord-icon>
+                            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#ffffff" style="width:32px;height:32px"></lord-icon>
                         </a>
                     </div>
                 <?php endif;?>
