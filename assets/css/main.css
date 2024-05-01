@@ -575,7 +575,6 @@ body{
     flex-wrap: wrap;
     background-color: #ffffff;
     border-radius: 20px;
-    overflow: hidden;
     color:#3a3a3a;
     width: 100%;
 }

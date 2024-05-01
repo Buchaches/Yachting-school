@@ -302,7 +302,7 @@
                         </div>
                     </div>
                     <iframe
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor" width="100%" height="350" frameborder="0">
+                        src="https://yandex.ru/map-widget/v1/?um=constructor%3Adbbffd324fd861644c0ac63e0bf77dca578113d5170c3033bb95c1bed8550624&amp;source=constructor" width="100%" height="350" frameborder="0" style="border-radius: 20px;">
                     </iframe>
                 </div>
             </div>
