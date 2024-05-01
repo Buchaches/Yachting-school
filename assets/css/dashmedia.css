@@ -102,7 +102,7 @@
         top: 0;
         right: 0;
         z-index: 999;
-        backdrop-filter: blur(70px);
+        background-color:#CBDCEC;
         border-left: none;
         box-shadow: none;
     }

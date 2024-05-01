@@ -1,9 +1,9 @@
 <?php
 $driver = 'mysql';
 $host = 'localhost';
-$db_name = 'YarYachts';
-$db_user = 'root';
-$db_pass = '';
+$db_name = 'buchaches';
+$db_user = 'buchaches';
+$db_pass = 'Dom486573';
 $charset = 'utf8mb4';
 $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
