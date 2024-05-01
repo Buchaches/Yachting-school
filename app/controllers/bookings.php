@@ -2,12 +2,14 @@
 include "../../path.php";
 include SITE_ROOT . "/app/database/db.php"; 
 
+date_default_timezone_set('Europe/Moscow');
+$today = date('Y-m-d');
+$timeNow = date("H:i:s");
+
 // Обработка AJAX запроса
 if(!empty($_POST["people"])){
     $stringNumber = $_POST["people"];
     $people = (int)$stringNumber;
-    date_default_timezone_set('Europe/Moscow');
-    $today = date('Y-m-d');
     $sql = "SELECT DISTINCT timeslots.date FROM timeslots WHERE remaining_capacity >= '$people' AND timeslots.date >= '$today' ORDER BY timeslots.date ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
@@ -26,7 +28,7 @@ if(!empty($_POST["date"]) && !empty($_POST["number"])){
     $date = $_POST["date"];
     $stringNumber = $_POST["number"];
     $number = (int)$stringNumber;
-    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' AND timeslots.remaining_capacity >= '$number' ORDER BY time_start ASC";
+    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' AND timeslots.remaining_capacity >= '$number' AND timeslots.time_start >= '$timeNow' ORDER BY time_start ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();

@@ -51,7 +51,7 @@
                             <?php
                                 date_default_timezone_set('Europe/Moscow');
                                 $date = date('Y-m-d');
-                                $time = date("H:i:s");
+                                $timeNow = date("H:i:s");
                                 echo $date;
                             ?>
                         </p>
@@ -112,7 +112,7 @@
                                     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                     INNER JOIN services ON timeslots.service_id = services.service_id
                                     INNER JOIN clients ON bookings.client_id = clients.client_id
-                                    WHERE bookings.instructor_id = '$instructor_id' AND timeslots.date >= '$date'
+                                    WHERE bookings.instructor_id = '$instructor_id' AND timeslots.date >= '$date' AND timeslots.time_start >= '$timeNow'
                                     ORDER BY timeslots.date ASC, timeslots.time_start ASC";                            
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
