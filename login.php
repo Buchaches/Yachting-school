@@ -34,7 +34,7 @@
     <?php include("./app/include/header.php"); ?>
     
     <div class="register container">
-        <form class="register__form row" method="post" accesskey="login.php">
+        <form class="register__form row" method="post" action="login.php">
             <h2 class="register__title">Авторизация</h2>
             <div class="mb-3">
                 <label for="exampleInputEmail" class="form-label">Email</label>

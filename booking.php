@@ -49,15 +49,15 @@
             <div class="header__account">
                 <lord-icon id="menuButton" onclick="toggleMenu()" src="https://cdn.lordicon.com/kthelypq.json" trigger="click" colors="primary:#fff" style="width:36px;height:36px;cursor:pointer"></lord-icon>
                 <ul class="header__account__menu" id="dropdownMenu">
-                    <?php if ($_SESSION['role_id'] === '3'): ?>
+                    <?php if ($_SESSION['role_id'] == '3'): ?>
                         <li class="header__account__menu-items">
                             <a class="header__account__menu-item" href="<?php echo BASE_URL . 'client/index.php'?>" class="">Личный кабинет</a>
                         </li>
-                    <?php elseif ($_SESSION['role_id'] === '2'): ?>
+                    <?php elseif ($_SESSION['role_id'] == '2'): ?>
                         <li class="__account__menu-items">
                             <a class="header__account__menu-item" href="<?php echo BASE_URL . 'instructor/index.php'?>" class="">Инструкторская</a>
                         </li>
-                    <?php elseif ($_SESSION['role_id'] === '1'): ?>
+                    <?php elseif ($_SESSION['role_id'] == '1'): ?>
                         <li class="__account__menu-items">
                             <a class="header__account__menu-item" href="<?php echo BASE_URL . 'admin/index.php'?>" class="">Админ панель</a>
                         </li>
