@@ -75,7 +75,7 @@
                         <div class="filter__row">
                             <div class="filter__col">
                                 <label for="exampleInputDate" class="filter__label">Дата</label>
-                                <input name="date" type="date" class="form-control filter__control">
+                                <input name="date" type="date" class="form-control filter__control" value="<?=$date?>">
                             </div>
                             <div class="filter__col">
                                 <label for="filterInstructors" class="filter__label">Инструктор</label>
@@ -310,7 +310,7 @@
                                                 <div class="row mb-3">
                                                     <div class="col">
                                                         <label for="exampleInputDate" class="form-label">Дата</label>
-                                                        <input name="date" type="date" class="form-control" id="exampleInputDate" required>
+                                                        <input name="date" type="date" class="form-control" id="exampleInputDate" required value="'.$date.'">
                                                     </div>
                                                     <div class="col">
                                                         <label for="exampleInputTime" class="form-label">Время</label>
@@ -411,7 +411,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="exampleInputDate" class="form-label">Дата</label>
-                                                        <input name="date" type="date" value="'.$date.'" class="form-control" id="exampleInputDate" required>
+                                                        <input name="date" type="date" value="'.$date.'" class="form-control" id="exampleInputDate" value="'.$date.'" required>
                                                     </div>
                                                     <div class="col">
                                                         <label for="exampleInputTime" class="form-label">Время</label>

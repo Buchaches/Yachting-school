@@ -74,7 +74,7 @@
                         <div class="filter__row">
                             <div class="filter__col">
                                 <label for="exampleInputDate" class="filter__label">Дата</label>
-                                <input name="date" type="date" class="form-control filter__control">
+                                <input name="date" type="date" class="form-control filter__control" value="<?=$date?>">
                             </div>
                             <div class="filter__col">
                                 <label for="filterInstructors" class="filter__label">Инструктор</label>
