@@ -70,7 +70,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Прогулок</div>
                                     <div class="item__count">
-                                        <?=$trip=countRowsBooking($client_id, 1)?>
+                                        <?=$trip=countRowsBookingClients($client_id, 1)?>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Тренировок</div>
                                     <div class="item__count">
-                                        <?=$training=countRowsBooking($client_id, 2)?>
+                                        <?=$training=countRowsBookingClients($client_id, 2)?>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="item__text">
                                     <div class="item__title">Регат</div>
                                     <div class="item__count">
-                                        <?=$race=countRowsBooking($client_id, 3)?>
+                                        <?=$race=countRowsBookingClients($client_id, 3)?>
                                     </div>                                   
                                 </div>
                             </div>

@@ -4,20 +4,20 @@
 ?>
 <?php 
     if(isset($_SESSION['email'])){
-        if($_SESSION["email"] == "" or $_SESSION['role_id']!='3'){
+        if($_SESSION["email"] == "" or $_SESSION['role_id']!='2'){
             header('location:' . BASE_URL. 'login.php');
         }
     }else{
         header('location:' . BASE_URL . 'login.php');
     }
-    $client_id = $_SESSION['client_id'];
+    $instructor_id = $_SESSION['instructor_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет - Покупки</title>
+    <title>Инструкторская - Слоты</title>
     
     <!-- -------------   CSS   ------------- -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -40,13 +40,13 @@
 </head>
 <body>
     <div class="dashboard">
-        <?php include("../app/include/client_sidebar.php"); ?>
+        <?php include("../app/include/instructor_sidebar.php"); ?>
         <div class="body">
             <header class="header">
                 <button id="sidebar-btn" class="sidebar-btn">
                     <img id="sidebar-btn-img" src="./../assets/img/icon/sidebar_menu/sidebar-open.svg" alt="Nav button">
                 </button>   
-                <h1 class="header__title">Покупки</h1>
+                <h1 class="header__title">Слоты</h1>
                 <div class="header__calendar">
                     <div class="calendar__text">
                         <p class="calendar__title">Today's Date</p>
@@ -66,26 +66,12 @@
             </header>
             <main class="main">
                 <div class="main__container">
-                    <div class="add__new">
-                        <a href="<?= BASE_URL . 'booking.php'?>" class="primary__btn add__btn" style="width: 270px;"><div>Забронировать</div></a>
-                    </div>
-                    <div class="row__counter">Всего покупок&nbsp;(<?=$totalClients = countRows("bookings",['client_id'=>$_SESSION['client_id']])?>)</div>
+                    <div class="row__counter">Всего слотов&nbsp;(<?=$totalClients = countRows("bookings",['instructor_id'=>$_SESSION['instructor_id']])?>)</div>
                     <form method="post" class="filter__form" action="bookings.php">
                         <div class="filter__row">
                             <div class="filter__col">
                                 <label for="exampleInputDate" class="filter__label">Дата</label>
                                 <input name="date" type="date" class="form-control filter__control">
-                            </div>
-                            <div class="filter__col">
-                                <label for="filterInstructors" class="filter__label">Инструктор</label>
-                                <select name="instructor" class="form-select" id="filterInstructors" style="width: 270px" data-placeholder="Выберите инструктора">
-                                    <option></option>
-                                    <?php 
-                                    $instructors = selectAll('instructors');
-                                    foreach($instructors as $key => $instructor):?>
-                                        <option value="<?=$instructor['instructor_id']?>"><?=$instructor['instructor_surname'] . " " . $instructor['instructor_name']?></option>
-                                    <?php endforeach; ?>
-                                </select>
                             </div>
                             <div class="filter__col">
                                 <label for="filterService" class="filter__label">Программа</label>
@@ -110,15 +96,12 @@
                                     <th>Дата</th>
                                     <th>Время</th>
                                     <th>Услуга</th>
-                                    <th>Инструктор</th>
+                                    <th>Клиент</th>
                                     <th>Мест</th>
-                                    <th>Статус</th>
-                                    <th>Дата&nbsp;покупки</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    
                                     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['filter__btn'])){
                                         $sqlpt1 = "";
                                         if(!empty($_POST["date"])) {
@@ -127,24 +110,18 @@
                                         }
                                     
                                         $sqlpt2 = "";
-                                        if(!empty($_POST["instructor"])) {
-                                            $instructor_id = $_POST["instructor"];
-                                            $sqlpt2 = "instructors.instructor_id = '$instructor_id'";
-                                        }
-
-                                        $sqlpt3 = "";
                                         if(!empty($_POST["service"])) {
                                             $service = $_POST["service"];
-                                            $sqlpt3 = "services.name = '$service'";
+                                            $sqlpt2 = "services.name = '$service'";
                                         }
 
-                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, bookings.booked_capacity, CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.timestamp, bookings.status
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name, CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity, bookings.timestamp, bookings.status
                                         FROM bookings
                                         INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
-                                        WHERE bookings.client_id = '$client_id'";
-                                        $sqllist = array($sqlpt1, $sqlpt2, $sqlpt3);
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        WHERE bookings.instructor_id = '$instructor_id'";
+                                        $sqllist = array($sqlpt1, $sqlpt2);
                                         foreach($sqllist as $key) {
                                             if(!empty($key)) {
                                                 $sql .= " AND " . $key;
@@ -152,12 +129,12 @@
                                         };
                                         $sql .= " ORDER BY timeslots.date ASC, timeslots.time_start ASC";
                                     }else{
-                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(instructors.instructor_surname, ' ', instructors.instructor_name) AS instructor, bookings.booked_capacity, bookings.timestamp, bookings.status
+                                        $sql = "SELECT timeslots.date, timeslots.time_start, services.name,  CONCAT(clients.client_surname ,' ', clients.client_name) AS client, bookings.booked_capacity, bookings.timestamp, bookings.status
                                         FROM bookings
                                         INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        LEFT JOIN instructors ON bookings.instructor_id = instructors.instructor_id
-                                        WHERE bookings.client_id = '$client_id'
+                                        INNER JOIN clients ON bookings.client_id = clients.client_id
+                                        WHERE bookings.instructor_id = '$instructor_id'
                                         ORDER BY timeslots.date ASC, timeslots.time_start ASC"; 
                                     }                      
                                     $query = $pdo->prepare($sql);
@@ -167,24 +144,18 @@
                                         while ($row =  $query->fetch()) {
                                             $formatDate = formatData($row['date']);
                                             $time_start = formatTime($row['time_start']);
-                                            if($row['status'] == 1){
-                                                $status = 'Оплачено';
-                                            }else {
-                                                $status = 'Не оплачено';
-                                            }
+
                                             echo "<tr>" .
                                             "<td style='font-size:18px; font-weight:800; color: var(--accent-blue); white-space: nowrap;'>" . $formatDate . "</td>" .
                                             "<td>" . $time_start . "</td>" .
                                             "<td>" . $row['name'] . "</td>" .
-                                            "<td>" . $row['instructor'] . "</td>" .
+                                            "<td>" . $row['client'] . "</td>" .
                                             "<td style='font-size: 20px; font-weight: 800; color: var(--accent-blue);'>" . $row['booked_capacity'] . "</td>" .
-                                            "<td class = 'colors' style = 'font-size: 17px; font-weight: 600; white-space: nowrap;'>" . $status . "</td>" .
-                                            "<td>" . $row['timestamp'] . "</td>" .
                                             "</tr>";
                                         }                                     
                                     } else { 
                                         echo '<tr>
-                                        <td colspan="7">
+                                        <td colspan="5">
                                         <img src="./../assets/img/icon/not_found.svg" width="260px">
                                         </td>
                                         </tr>'; 
@@ -203,7 +174,7 @@
 <script src="../assets/js/libraries/jquery.min.js"></script>
 <script src="../assets/js/libraries/select2.min.js"></script>
 <script src="../assets/js/sidebar.js"></script>
-<script src="../assets/js/client/bookings.js"></script>
+<script src="../assets/js/instructor/bookings.js"></script>
 <!-- -------------   END js   ------------- -->
 
 </body>

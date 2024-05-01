@@ -204,7 +204,7 @@
                                             }                                     
                                         } else { 
                                             echo '<tr>
-                                            <td colspan="4">
+                                            <td colspan="5">
                                             <img src="../assets/img/icon/not_found.svg" width="260px">
                                             </td>
                                             </tr>'; 
