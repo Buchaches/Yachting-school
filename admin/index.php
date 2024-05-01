@@ -50,7 +50,7 @@
                             <?php
                                 date_default_timezone_set('Europe/Moscow');
                                 $date = date('Y-m-d');
-                                $time = date("H:i:s");
+                                $timeNow = date("H:i:s");
                                 echo $date;
                             ?>
                         </p>
@@ -128,7 +128,7 @@
                                         $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
                                         FROM timeslots
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        WHERE timeslots.date BETWEEN '$date' AND '$date' + INTERVAL 7 DAY
+                                        WHERE timeslots.time_start >= '$timeNow' AND timeslots.date BETWEEN '$date' AND '$date' + INTERVAL 7 DAY
                                         ORDER BY timeslots.date, timeslots.time_start ASC";                            
                                         $query = $pdo->prepare($sql);
                                         $query->execute();
