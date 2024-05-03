@@ -28,7 +28,7 @@ if(!empty($_POST["date"]) && !empty($_POST["number"])){
     $date = $_POST["date"];
     $stringNumber = $_POST["number"];
     $number = (int)$stringNumber;
-    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' AND timeslots.remaining_capacity >= '$number' AND timeslots.time_start >= '$timeNow' ORDER BY time_start ASC";
+    $sql = "SELECT * FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE timeslots.date = '$date' AND timeslots.remaining_capacity >= '$number' AND (timeslots.date > '$today' OR (timeslots.date = '$today' AND timeslots.time_start >= '$timeNow')) ORDER BY time_start ASC";
     $query = $pdo->prepare($sql);
     $query->execute();
     $rowCount = $query->rowCount();
@@ -52,14 +52,14 @@ if(!empty($_POST["slot"]) && !empty($_POST["number"])){
     $query->execute();
     $rowCount = $query->rowCount();
     if($rowCount > 0){
-        echo '<option value="NULL">Любой классный</option>';
+        echo '<option value="0">Любой классный</option>';
         while($row = $query->fetch()){
             $fullName = $row['instructor_surname'] . " " . $row['instructor_name'];
             $icapacity = $row['remaining_capacity'] . "/" . $row['total_capacity'];
             echo '<option value="'.$row['instructor_id'].'">'.$fullName.' | '.$icapacity.'</option>';
         }
     }else{
-        echo '<option value="NULL">Любой классный</option>';
+        echo '<option value="0">Любой классный</option>';
     }
 }
 

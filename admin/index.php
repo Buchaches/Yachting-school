@@ -130,7 +130,7 @@
                                         $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
                                         FROM timeslots
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        WHERE timeslots.time_start >= '$timeNow' AND timeslots.date BETWEEN '$date' AND '$date' + INTERVAL 7 DAY
+                                        WHERE timeslots.date BETWEEN '$date' AND DATE_ADD('$date', INTERVAL 7 DAY) AND (timeslots.date > '$date' OR (timeslots.date = '$date' AND timeslots.time_start > '$timeNow'))
                                         ORDER BY timeslots.date, timeslots.time_start ASC";                            
                                         $query = $pdo->prepare($sql);
                                         $query->execute();

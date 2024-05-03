@@ -4,18 +4,17 @@
 ?>
 <?php 
 
-$max_capacity = 24; // Всего возможных мест ,учитывая флот, состоящий из 6 яхт.
-$max_people = 4; // Всего мест у 1 инструктора.
-
 // Создание слота
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add__btn'])){
+    $max_capacity = 24; // Всего возможных мест ,учитывая флот, состоящий из 6 яхт.
+    $max_people = 4; // Всего мест у 1 инструктора
     $service_name = $_POST["service"];
     $date = $_POST["date"];
     $time_start = $_POST["time_start"];
     $yachts_number = $_POST["number"];
     $instructors = $_POST["instructors"];
     $capacity = $max_people * $yachts_number;
-
+    
     $service = "SELECT service_id, duration FROM services WHERE name = '$service_name'";
     $stmt = $pdo->prepare($service);
     $stmt->execute();
@@ -38,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add__btn'])){
     }elseif($instructors_number < $yachts_number){
         $error='2';
     }else{
-        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND time_finish BETWEEN '$time_start' AND '$time_finish'";
+        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND time_start BETWEEN '$time_start' AND '$time_finish' OR time_finish BETWEEN '$time_start' AND '$time_finish';";
         $stmt = $pdo->prepare($sum);
         $stmt->execute();
         $result = $stmt->fetch();
@@ -74,6 +73,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add__btn'])){
 
 // Редактирование слота
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit__btn'])){
+    $max_capacity = 24; // Всего возможных мест ,учитывая флот, состоящий из 6 яхт.
+    $max_people = 4; // Всего мест у 1 инструктора
     $slot_id = $_POST["slot_id"];
     $service_name = $_POST["service"];
     $date = $_POST["date"];

@@ -2,11 +2,13 @@
 const nav = document.querySelector('#nav');
 const navBtn = document.querySelector('#nav-btn');
 const navBtnImg = document.querySelector('#nav-btn-img');
+const headerNav = document.querySelector('.header');
 
 navBtn.onclick = () => {
   if(nav.classList.toggle('open')){
     navBtnImg.src = "./assets/img/icon/header_menu/nav-close.svg"
-  } else {
+    headerNav.classList.add('scrolled');
+  }else{
     navBtnImg.src = "./assets/img/icon/header_menu/nav-open.svg"
   }
 }

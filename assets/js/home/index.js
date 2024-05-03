@@ -15,12 +15,6 @@ const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav__link');
 const headerHeight = document.querySelector('header').offsetHeight;
 
-navBtn.onclick = () => {
-  if(nav.classList.toggle('open') && window.scrollY < header_Height){
-    header.classList.add('scrolled');
-  }
-}
-
 function onScroll() {
     let scrollPosition = document.documentElement.scrollTop + headerHeight;
   
