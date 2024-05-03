@@ -136,12 +136,12 @@
                                                 $key2++;
                                             }
                                         };
-                                        $sql .= " GROUP BY timeslots.slot_id ORDER BY timeslots.date DESC";
+                                        $sql .= " GROUP BY timeslots.slot_id ORDER BY timeslots.date DESC, timeslots.time_start ASC";
                                     }else{
                                         $sql = "SELECT timeslots.slot_id, services.name, timeslots.date, timeslots.time_start, timeslots.total_capacity,timeslots.remaining_capacity
                                         FROM timeslots
                                         INNER JOIN services ON timeslots.service_id = services.service_id
-                                        ORDER BY timeslots.date DESC";                            
+                                        ORDER BY timeslots.date DESC, timeslots.time_start ASC";                            
                                     }
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
