@@ -13,3 +13,7 @@ try {
 } catch (PDOException $e) { 
     die("Ошибка подключения к базе данных: " . $e->getMessage());
 }
+
+const SHOP_ID = '379743';
+const API_KEY = 'test_16jTMVeo_VY2tgnsIm3pSLXp2TjdHyiS4NLFgiBAz_Y';
+const SUCCESS_URL = 'https://yaryachts.ru';

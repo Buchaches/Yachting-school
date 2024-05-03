@@ -4,7 +4,7 @@
 ?>
 <?php 
     if(isset($_SESSION['email'])){
-        if($_SESSION["email"] == ""){
+        if($_SESSION["email"] == "" or $_SESSION['role_id'] == '2'){
             header('location:' . BASE_URL. 'login.php');
         }
     }else{
@@ -108,7 +108,7 @@
                     </lord-icon>
                 </div>
             </div>
-            <form action="<?php echo BASE_URL . '/app/controllers/bookings.php'?>" method="post">
+            <form action="<?php echo BASE_URL . 'app/controllers/bookings.php'?>" method="post">
                 <input name="client" value="<?=$client_id?>" type="hidden">
                 <input name="capacity" id="capacity" value="" type="hidden">
                 <div class="mb-4">

@@ -1,6 +1,10 @@
 <?php
+
+use YooKassa\Client;
+
 include "../../path.php";
 include SITE_ROOT . "/app/database/db.php"; 
+require SITE_ROOT . '/vendor/autoload.php';
 
 date_default_timezone_set('Europe/Moscow');
 $today = date('Y-m-d');
@@ -83,5 +87,74 @@ if(!empty($_POST["slotPrice"]) && !empty($_POST["numberPrice"])){
 
 // Обработка формы бронирования
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking__btn'])){
-    tt($_POST);
+    $client_id = $_POST["client"];
+    $instructor_id = $_POST["instructor"];
+    $capacity = $_POST["capacity"];
+    $slot_id = $_POST["slot"];
+
+    $sql = "SELECT services.price FROM timeslots INNER JOIN services ON timeslots.service_id = services.service_id WHERE slot_id = '$slot_id'"; 
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $result = $query->fetch();
+    $servicePrice = $result['price'];
+    $price = (int)$servicePrice * $capacity;
+
+    if ($client_id !='0' && $instructor_id !='0'){
+        $post_bookings = [
+            "client_id" => $client_id,
+            "slot_id" => $slot_id,
+            "instructor_id" => $instructor_id,
+            "booked_capacity" => $capacity
+        ];
+    } elseif ($client_id =='0' && $instructor_id !='0'){
+        $post_bookings = [
+            "slot_id" => $slot_id,
+            "instructor_id" => $instructor_id,
+            "booked_capacity" => $capacity
+        ];
+    } elseif ($instructor_id =='0' && $client_id !='0'){
+        $post_bookings = [
+            "client_id" => $client_id,
+            "slot_id" => $slot_id,
+            "booked_capacity" => $capacity
+        ];
+    } else {
+        $post_bookings = [
+            "slot_id" => $slot_id,
+            "booked_capacity" => $capacity
+        ];
+    }
+    $booking_id = insert("bookings",$post_bookings);
+
+    $client = new Client();
+    $client->setAuth(SHOP_ID, API_KEY);
+    try {
+        $idempotenceKey = uniqid('', true);
+        $response = $client->createPayment(
+            array(
+                'amount' => array(
+                    'value' => $price,
+                    'currency' => 'RUB',
+                ),
+                'confirmation' => array(
+                    'type' => 'redirect',
+                    'return_url' => SUCCESS_URL,
+                ),
+                'capture' => true,
+                'description' => 'Заказ №' . $booking_id,
+                'metadata' => array(
+                    'orderNumber' => $booking_id,
+                    'capacity' => $capacity,
+                    'instructor' => $instructor_id,
+                    'slot' => $slot_id
+                ),
+            ),
+            $idempotenceKey
+        );
+        $confirmationUrl = $response->getConfirmation()->getConfirmationUrl();
+        header("Location: " . $confirmationUrl);
+        die;
+    } catch(Exception $e){
+        $response = $e;
+    }
 }
