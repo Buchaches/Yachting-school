@@ -298,7 +298,7 @@
                                     <img src="./assets/img/icon/contact_icon/phone.png" alt="" width="16" height="16"> <a href="tel:+79036917117">+7 (903) 691-71-17</a>
                                 </li>
                                 <li class="contact__communication__item">
-                                    <img src="./assets/img/icon/contact_icon/mail.png"alt="" width="16" height="16"> <a href="mailto:yaryacht@yandex.ru">yaryacht@yandex.ru</a>
+                                    <img src="./assets/img/icon/contact_icon/mail.png"alt="" width="16" height="16"> <a href="mailto:support@yaryachts.ru">support@yaryachts.ru</a>
                                 </li>
                             </ul>
                         </div>

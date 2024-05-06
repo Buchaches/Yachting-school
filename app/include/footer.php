@@ -3,7 +3,7 @@
         <div class="footer__contacts">
             <p class="footer__title">Контакты</p>
             <a class="footer__link footer__link-phone" href="tel:+79036917117">+7 (903) 691-71-17</a>
-            <a class="footer__link footer__link-mail" href="mailto:yaryacht@yandex.ru">yaryacht@yandex.ru</a>
+            <a class="footer__link footer__link-mail" href="mailto:support@yaryachts.ru">support@yaryachts.ru</a>
             <a class="footer__link footer__link-web" href="<?php echo BASE_URL ?>">www.yaryachts.ru</a>
         </div>
         <a href="<?php echo BASE_URL ?>" class="logo">

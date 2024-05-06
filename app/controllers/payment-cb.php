@@ -60,6 +60,7 @@ try {
             ];
             update("instructor_timeslots", "id", $id, $post_instructors);
         }
+        
     }
 } catch (Exception $e) {
     $response = $e;
