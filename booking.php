@@ -10,6 +10,17 @@
     }else{
         header('location:' . BASE_URL . 'login.php');
     }
+    
+    $to = 'buchin.gleb@icloud.com';
+    $subject = '=?utf-8?B?' . base64_encode('Тестовое сообщение') . '?=';
+    $message = 'Тестовое сообщение';
+    $headers = [
+        "From" => "support@yaryachts.ru",
+        "Reply-To" => "support@yaryachts.ru",
+        "Content-Type" => "text/plain; charset=utf-8",
+    ];
+
+    mail($to, $subject, $message, $headers);
 ?>
 <!DOCTYPE html>
 <html lang="en">
