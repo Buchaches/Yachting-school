@@ -24,6 +24,7 @@ try {
     $payment_order_id = $requestBody['object']['metadata']['orderNumber'] ?? '';
     $payment_capacity =  $requestBody['object']['metadata']['capacity'];
     $payment_instructor =  $requestBody['object']['metadata']['instructor'];
+    $payment_client =  $requestBody['object']['metadata']['client'];
     $payment_slot =  $requestBody['object']['metadata']['slot'];
     
 
@@ -60,7 +61,32 @@ try {
             ];
             update("instructor_timeslots", "id", $id, $post_instructors);
         }
+        //Отправка письма
+        if($payment_client != null){
+            $slot = selectOne("timeslots",['slot_id' => $payment_slot]);
+            $timeAdd = DateTime::createFromFormat('H:i:s', $slot['time_finish']);
+            $timeAdd->modify('+3 minutes');
+            $time_finish = $timeAdd->format('H:i:s');
+            $time_finish = formatTime($time_finish);
+            $time_start = formatTime($slot['time_start']);
+            $date = formatData($slot['date']);
+            $services = selectOne("services",['service_id' => $slot['service_id']]);
+            $client = selectOne("clients",['client_id' => $payment_client]);
+            $user_id = $client['user_id'];
+            $clientUser = selectOne("users",['user_id' => $user_id]);
+
+            $to = $clientUser['email'];
+            $subject = '=?utf-8?B?' . base64_encode('Подтверждение бронирования') . '?=';
+            $message = 'Уважаемый ' . $client['client_name'] . ',' . "\n\n" . 'Мы рады сообщить вам, что ваше бронирование в нашей яхт-школе было успешно подтверждено.' . "\n\n" . 'Ниже приведены детали вашего бронирования:' . "\n\n" . '• Услуга: ' . $services['name'] . "\n" . '• Дата: ' . $date . "\n" . '• Время начала: ' . $time_start . "\n" . '• Время окончания: ' . $time_finish . "\n" . '• Количество мест: ' . $payment_capacity . "\n" . '• Стоимость: ' . $payment_amount . " RUB\n\n" . 'Мы высоко ценим ваше доверие к нашим услугам и с нетерпением ждем возможности предоставить вам незабываемый опыт в мире яхтинга!' . "\n\n" . 'C уважением,' . "\n" . 'YarYachts.ru';
         
+            $headers = [
+                "From" => "support@yaryachts.ru",
+                "Reply-To" => "support@yaryachts.ru",
+                "Content-Type" => "text/plain; charset=utf-8",
+            ];
+        
+            mail($to, $subject, $message, $headers);
+        }
     }
 } catch (Exception $e) {
     $response = $e;

@@ -146,6 +146,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking__btn'])){
                     'orderNumber' => $booking_id,
                     'capacity' => $capacity,
                     'instructor' => $instructor_id,
+                    'client' => $client_id,
                     'slot' => $slot_id
                 ),
             ),

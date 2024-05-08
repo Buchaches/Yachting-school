@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add__btn'])){
     }elseif($instructors_number < $yachts_number){
         $error='2';
     }else{
-        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND time_start BETWEEN '$time_start' AND '$time_finish' OR time_finish BETWEEN '$time_start' AND '$time_finish';";
+        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND ((time_start BETWEEN '$time_start' AND '$time_finish') OR (time_finish BETWEEN '$time_start' AND '$time_finish'))";
         $stmt = $pdo->prepare($sum);
         $stmt->execute();
         $result = $stmt->fetch();
@@ -105,7 +105,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit__btn'])){
     if(empty($service_name) || empty($date) || empty($time_start) || empty($yachts_number) || empty($capacity)){
         $error='1';
     }else{
-        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND time_finish BETWEEN '$time_start' AND '$time_finish'";
+        $sum = "SELECT SUM(total_capacity) FROM timeslots WHERE date = '$date' AND ((time_start BETWEEN '$time_start' AND '$time_finish') OR (time_finish BETWEEN '$time_start' AND '$time_finish'))";
         $stmt = $pdo->prepare($sum);
         $stmt->execute();
         $result = $stmt->fetch();
