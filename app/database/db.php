@@ -158,7 +158,7 @@ function countRows($table, $params = []) {
 // Всего покупок клиентами по ввиду услуги
 function countRowsBookingClients($client_id, $service_id){
     global $pdo;
-    $sql = "SELECT COUNT(*) as total_rows
+    $sql = "SELECT COUNT(DISTINCT timeslots.slot_id) as total_rows
     FROM bookings
     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
     INNER JOIN services ON timeslots.service_id = services.service_id
@@ -171,7 +171,7 @@ function countRowsBookingClients($client_id, $service_id){
 }
 function countRowsBookingInstructor($instructor_id, $service_id){
     global $pdo;
-    $sql = "SELECT COUNT(*) as total_rows
+    $sql = "SELECT COUNT(DISTINCT timeslots.slot_id) as total_rows
     FROM bookings
     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
     INNER JOIN services ON timeslots.service_id = services.service_id

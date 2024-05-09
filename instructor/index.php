@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="main__title">Купленные слоты</div>
+                    <div class="main__title">Предстоящие слоты</div>
                     <div class="table__container client">
                         <table class="main__table">
                             <thead>
@@ -114,7 +114,7 @@
                                     INNER JOIN timeslots ON bookings.slot_id = timeslots.slot_id
                                     INNER JOIN services ON timeslots.service_id = services.service_id
                                     INNER JOIN clients ON bookings.client_id = clients.client_id
-                                    WHERE bookings.instructor_id = '$instructor_id' AND timeslots.date >= '$date' AND timeslots.time_start >= '$timeNow'
+                                    WHERE bookings.instructor_id = '$instructor_id'  AND (timeslots.date > '$date' OR (timeslots.date = '$date' AND timeslots.time_start > '$timeNow'))
                                     ORDER BY timeslots.date ASC, timeslots.time_start ASC";                            
                                     $query = $pdo->prepare($sql);
                                     $query->execute();
