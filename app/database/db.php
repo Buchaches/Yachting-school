@@ -30,22 +30,19 @@ function dbCheckError($query){
 function selectAll($table, $params = []){
     global $pdo;
     $sql = "SELECT * FROM $table";
-
+    $whereClause = '';
     if(!empty($params)){
-        $i = 0;
+        $conditions = [];
         foreach ($params as $key => $value){
-            if (!is_numeric($value)){
-                $value = "'".$value."'";
-            }
-            if ($i === 0){
-                $sql = $sql . " WHERE $key=$value";
-            }else{
-                $sql = $sql . " AND $key=$value";
-            }
-            $i++;
+            $conditions[] = "$key = :$key";
         }
+        $whereClause = " WHERE " . implode(" AND ", $conditions);
     }
+    $sql .= $whereClause;
     $query = $pdo->prepare($sql);
+    foreach ($params as $key => $value) {
+        $query->bindValue(":$key", $value);
+    }
     $query->execute();
     dbCheckError($query);
     return $query->fetchAll();
@@ -55,23 +52,19 @@ function selectAll($table, $params = []){
 function selectOne($table, $params = []){
     global $pdo;
     $sql = "SELECT * FROM $table";
-
+    $whereClause = '';
     if(!empty($params)){
-        $i = 0;
+        $conditions = [];
         foreach ($params as $key => $value){
-            if (!is_numeric($value)){
-                $value = "'".$value."'";
-            }
-            if ($i === 0){
-                $sql = $sql . " WHERE $key=$value";
-            }else{
-                $sql = $sql . " AND $key=$value";
-            }
-            $i++;
+            $conditions[] = "$key = :$key";
         }
+        $whereClause = " WHERE " . implode(" AND ", $conditions);
     }
-
+    $sql .= $whereClause;
     $query = $pdo->prepare($sql);
+    foreach ($params as $key => $value) {
+        $query->bindValue(":$key", $value);
+    }
     $query->execute();
     dbCheckError($query);
     return $query->fetch();
@@ -80,24 +73,13 @@ function selectOne($table, $params = []){
 // Запись в таблицу БД
 function insert($table, $params){
     global $pdo;
-    $i = 0;
-    $coll = '';
-    $mask = '';
-    foreach ($params as $key => $value) {
-        if ($i === 0){
-            $coll = $coll . "$key";
-            $mask = $mask . "'" ."$value" . "'";
-        }else {
-            $coll = $coll . ", $key";
-            $mask = $mask . ", '" . "$value" . "'";
-        }
-        $i++;
-    }
-
-    $sql = "INSERT INTO $table ($coll) VALUES ($mask)";
-
+    $keys = array_keys($params);
+    $coll = implode(", ", $keys);
+    $placeholders = implode(", ", array_fill(0, count($keys), "?"));
+    $values = array_values($params);
+    $sql = "INSERT INTO $table ($coll) VALUES ($placeholders)";
     $query = $pdo->prepare($sql);
-    $query->execute();
+    $query->execute($values);
     dbCheckError($query);
     return $pdo->lastInsertId();
 }
@@ -105,18 +87,17 @@ function insert($table, $params){
 // Обновление строки в таблице
 function update($table, $name_id, $id, $params){
     global $pdo;
-    $i = 0;
-    $str = '';
+    $updates = [];
     foreach ($params as $key => $value) {
-        if ($i === 0){
-            $str = $str . $key . " = '$value'";
-        }else {
-            $str = $str . ", $key" . " = '$value'";
-        }
-        $i++;
+        $updates[] = "$key = :$key";
     }
-    $sql = "UPDATE $table SET $str WHERE $name_id = $id";
+    $setValues = implode(", ", $updates);
+    $sql = "UPDATE $table SET $setValues WHERE $name_id = :id";
     $query = $pdo->prepare($sql);
+    foreach ($params as $key => $value) {
+        $query->bindValue(":$key", $value);
+    }
+    $query->bindValue(":id", $id);
     $query->execute();
     dbCheckError($query);
 }
@@ -124,8 +105,9 @@ function update($table, $name_id, $id, $params){
 // Удаление строки в таблице
 function deleteOne($table, $name_id, $id){
     global $pdo;
-    $sql = "DELETE FROM $table WHERE $name_id = $id";
+    $sql = "DELETE FROM $table WHERE $name_id = :id";
     $query = $pdo->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
     $query->execute();
     dbCheckError($query);
 }
@@ -134,21 +116,24 @@ function deleteOne($table, $name_id, $id){
 function countRows($table, $params = []) {
     global $pdo;
     $sql = "SELECT COUNT(*) as total_rows FROM $table";
-    if(!empty($params)){
-        $i = 0;
-        foreach ($params as $key => $value){
-            if (!is_numeric($value)){
-                $value = "'".$value."'";
-            }
-            if ($i === 0){
-                $sql = $sql . " WHERE $key=$value";
-            }else{
-                $sql = $sql . " AND $key=$value";
-            }
-            $i++;
+    if(!empty($params)) {
+        $sql .= " WHERE ";
+        $placeholders = [];
+        foreach ($params as $key => $value) {
+            $placeholders[] = "$key = :$key";
         }
+        $sql .= implode(" AND ", $placeholders);
+        $query = $pdo->prepare($sql);
+        foreach ($params as $key => $value) {
+            if (!is_numeric($value)) {
+                $query->bindValue(":$key", $value, PDO::PARAM_STR);
+            } else {
+                $query->bindValue(":$key", $value, PDO::PARAM_INT);
+            }
+        }
+    } else {
+        $query = $pdo->query($sql);
     }
-    $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
     $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -169,6 +154,8 @@ function countRowsBookingClients($client_id, $service_id){
     $result = $query->fetch(PDO::FETCH_ASSOC);
     return $result['total_rows'];
 }
+
+// Всего покупок клиентами у инструктора по ввиду услуги
 function countRowsBookingInstructor($instructor_id, $service_id){
     global $pdo;
     $sql = "SELECT COUNT(DISTINCT timeslots.slot_id) as total_rows
@@ -182,7 +169,6 @@ function countRowsBookingInstructor($instructor_id, $service_id){
     $result = $query->fetch(PDO::FETCH_ASSOC);
     return $result['total_rows'];
 }
-
 
 // Форматирование даты
 function formatData($dateString){
